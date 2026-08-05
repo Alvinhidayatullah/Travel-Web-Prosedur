@@ -7,6 +7,7 @@ import type { Country } from "@prisma/client"
 import { Plus, Edit2, Trash2, Loader2 } from "lucide-react"
 import { GlassCard } from "@/components/ui/GlassCard"
 import { NeonButton } from "@/components/ui/NeonButton"
+import { worldCountries } from "@/lib/countries"
 
 // Simple mapping for auto-filling currency based on some popular flags/countries
 const currencyMap: Record<string, string> = {
@@ -38,17 +39,20 @@ export default function AdminDashboard() {
     setIsLoading(false)
   }
 
-  // Automasi Mata Uang ketika Flag/Nama diinput
-  const handleFlagChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const flag = e.target.value
-    let newCurrency = formData.currency
+  // Automasi Mata Uang & Bendera ketika Negara Dipilih
+  const handleCountrySelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedCode = e.target.value
+    const country = worldCountries.find(c => c.code === selectedCode)
     
-    // Auto fill currency if flag matches map
-    if (currencyMap[flag]) {
-      newCurrency = currencyMap[flag]
+    if (country) {
+      setFormData({ 
+        ...formData, 
+        code: country.code,
+        name: country.name,
+        flagUrl: country.flag, 
+        currency: country.currency 
+      })
     }
-    
-    setFormData({ ...formData, flagUrl: flag, currency: newCurrency })
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -104,14 +108,35 @@ export default function AdminDashboard() {
           {editingId ? "Edit Destinasi" : "Tambah Destinasi Baru"}
         </h2>
         <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-2 md:col-span-2">
+            <label className="text-sm font-medium text-slate-300">Pilih Negara dari Seluruh Dunia</label>
+            <select 
+              onChange={handleCountrySelect}
+              className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white appearance-none"
+              defaultValue=""
+            >
+              <option value="" disabled>-- Pilih Negara untuk Isi Otomatis --</option>
+              {worldCountries.map(c => (
+                <option key={c.code} value={c.code}>
+                  {c.flag} {c.name}
+                </option>
+              ))}
+            </select>
+            <p className="text-xs text-slate-500">Ikon, Nama, Kode, dan Mata uang akan terisi otomatis setelah dipilih.</p>
+          </div>
+
+          <div className="space-y-2 hidden">
+            {/* Hidden fields just to hold the automated values if we still want them submitted manually,
+                or we can just keep them visible so admin can edit if needed */}
+          </div>
+          
           <div className="space-y-2">
-            <label className="text-sm font-medium text-slate-300">Ikon/Bendera (Emoji)</label>
+            <label className="text-sm font-medium text-slate-300">Ikon/Bendera</label>
             <input 
-              type="text" required value={formData.flagUrl} onChange={handleFlagChange}
+              type="text" required value={formData.flagUrl} onChange={e => setFormData({...formData, flagUrl: e.target.value})}
               className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-white text-xl"
               placeholder="🇯🇵"
             />
-            <p className="text-xs text-slate-500">Mata uang otomatis terisi untuk bendera populer.</p>
           </div>
           
           <div className="space-y-2">
