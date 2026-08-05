@@ -160,50 +160,7 @@ async function main() {
   })
   console.log('✅ Topic seeded:', pasporTopic.title)
 
-  // 5. Create Topic: Layanan E-VOA
-  const evoaTopic = await seedPrisma.topic.create({
-    data: {
-      slug: 'layanan-evoa',
-      title: 'Layanan E-VOA (Electronic Visa on Arrival)',
-      description: 'Panduan pengajuan E-VOA bagi Warga Negara Asing (WNA) yang ingin berkunjung ke Indonesia untuk tujuan wisata atau kunjungan singkat.',
-      icon: 'globe',
-      requirements: {
-        create: [
-          {
-            stepNumber: 1,
-            title: 'Persiapkan Paspor yang Valid',
-            description: 'Paspor WNA harus berasal dari negara subjek VOA dan masih berlaku minimal 6 bulan.',
-            isMandatory: true,
-          },
-          {
-            stepNumber: 2,
-            title: 'Akses Portal Resmi Molina',
-            description: 'Buka website resmi imigrasi (molina.imigrasi.go.id) dan buat akun.',
-            isMandatory: true,
-          },
-          {
-            stepNumber: 3,
-            title: 'Isi Formulir Aplikasi E-VOA',
-            description: 'Masukkan informasi paspor, data diri, alamat tempat tinggal selama di Indonesia, dan unggah foto paspor.',
-            isMandatory: true,
-          },
-          {
-            stepNumber: 4,
-            title: 'Pembayaran Online',
-            description: 'Lakukan pembayaran biaya E-VOA menggunakan kartu kredit atau debit berlogo Visa/Mastercard/JCB.',
-            isMandatory: true,
-          },
-          {
-            stepNumber: 5,
-            title: 'Unduh E-VOA',
-            description: 'Setelah disetujui, E-VOA dapat diunduh dalam format PDF. Cetak atau simpan di perangkat digital untuk ditunjukkan pada saat kedatangan.',
-            isMandatory: true,
-          }
-        ]
-      }
-    }
-  })
-  console.log('✅ Topic seeded:', evoaTopic.title)
+
 
 }
 
