@@ -2,6 +2,7 @@ import { getTopicBySlug } from "@/app/actions"
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import { ArrowLeft, BookOpen, AlertCircle } from "lucide-react"
+import { ScrollReveal } from "@/components/ui/ScrollReveal"
 
 export const revalidate = 0
 
@@ -53,27 +54,29 @@ export default async function TopicDetail({ params }: { params: { slug: string }
         ) : (
           <div className="relative before:absolute before:inset-0 before:ml-8 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-1 before:bg-gradient-to-b before:from-neon-cyan before:via-neon-violet before:to-transparent">
             {topic.requirements.map((req, index) => (
-              <div key={req.id} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group mb-12 last:mb-0 hover:scale-[1.02] transition-transform duration-300">
-                
-                {/* Step Marker */}
-                <div className="flex items-center justify-center w-16 h-16 rounded-full border-4 border-[#090A0F] bg-neon-cyan text-black font-black text-xl shadow-[0_0_30px_rgba(34,211,238,0.6)] shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 relative z-10 transition-transform duration-500 group-hover:rotate-12">
-                  {index + 1}
-                </div>
-                
-                {/* Content Card */}
-                <div className="w-[calc(100%-5rem)] md:w-[calc(50%-4rem)] p-6 md:p-8 rounded-3xl bg-black/60 border border-white/10 backdrop-blur-xl shadow-2xl relative overflow-hidden">
-                  {/* Subtle inner glow */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-neon-cyan/5 to-transparent pointer-events-none" />
+              <ScrollReveal key={req.id} delay={0.1} direction={index % 2 === 0 ? "right" : "left"}>
+                <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group mb-12 last:mb-0 hover:scale-[1.02] transition-transform duration-300">
                   
-                  <h3 className="font-bold text-xl text-white mb-3 relative z-10 flex items-center gap-2">
-                    {req.title}
-                  </h3>
-                  <p className="text-slate-300 text-base leading-relaxed relative z-10">
-                    {req.description}
-                  </p>
-                </div>
+                  {/* Step Marker */}
+                  <div className="flex items-center justify-center w-16 h-16 rounded-full border-4 border-[#090A0F] bg-neon-cyan text-black font-black text-xl shadow-[0_0_30px_rgba(34,211,238,0.6)] shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 relative z-10 transition-transform duration-500 group-hover:rotate-12">
+                    {index + 1}
+                  </div>
+                  
+                  {/* Content Card */}
+                  <div className="w-[calc(100%-5rem)] md:w-[calc(50%-4rem)] p-6 md:p-8 rounded-3xl bg-black/60 border border-white/10 backdrop-blur-xl shadow-2xl relative overflow-hidden">
+                    {/* Subtle inner glow */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-neon-cyan/5 to-transparent pointer-events-none" />
+                    
+                    <h3 className="font-bold text-xl text-white mb-3 relative z-10 flex items-center gap-2">
+                      {req.title}
+                    </h3>
+                    <p className="text-slate-300 text-base leading-relaxed relative z-10">
+                      {req.description}
+                    </p>
+                  </div>
 
-              </div>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
         )}
