@@ -1,0 +1,55 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Country {
+  id           String      @id @default(uuid())
+  code         String      @unique // e.g. "JP", "SG", "KR"
+  name         String
+  flagUrl      String
+  coverImage   String
+  visaType     String      @default("Bebas Visa")
+  currency     String
+  emergencyNo  String      @default("")
+  embassyInfo  String      @default("")
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  procedures   Procedure[]
+  qrScans      QRScan[]
+}
+
+model Procedure {
+  id          String         @id @default(uuid())
+  countryId   String
+  country     Country        @relation(fields: [countryId], references: [id], onDelete: Cascade)
+  phase       String         // "PRE_DEPARTURE", "DEPARTURE_DAY", "IN_FLIGHT_TRANSIT", "ARRIVAL"
+  stepNumber  Int            @default(0)
+  title       String
+  description String         
+  isMandatory Boolean        @default(true)
+  docRequired String         @default("[]") // JSON serialized array
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+}
+
+model AdminUser {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String   // Hashed with bcrypt
+  name      String
+  role      String   @default("ADMIN")
+  createdAt DateTime @default(now())
+}
+
+model QRScan {
+  id        String   @id @default(uuid())
+  countryId String
+  country   Country  @relation(fields: [countryId], references: [id])
+  location  String?  // e.g. "Soekarno-Hatta T3"
+  scannedAt DateTime @default(now())
+}
