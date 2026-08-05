@@ -109,6 +109,101 @@ async function main() {
     }
   })
   console.log('✅ Topic seeded:', anakTopic.title)
+  // 4. Create Topic: Pembuatan Paspor Baru
+  const pasporTopic = await seedPrisma.topic.create({
+    data: {
+      slug: 'pembuatan-paspor-baru',
+      title: 'Prosedur Pembuatan Paspor Baru',
+      description: 'Langkah-langkah dan persyaratan untuk mengajukan pembuatan paspor RI baru secara online melalui aplikasi M-Paspor.',
+      icon: 'book',
+      requirements: {
+        create: [
+          {
+            stepNumber: 1,
+            title: 'Unduh Aplikasi M-Paspor',
+            description: 'Aplikasi M-Paspor dapat diunduh melalui Google Play Store (Android) atau App Store (iOS).',
+            isMandatory: true,
+          },
+          {
+            stepNumber: 2,
+            title: 'Pendaftaran dan Pengisian Data',
+            description: 'Buat akun, pilih jenis paspor (biasa atau elektronik), dan isi formulir data diri dengan lengkap.',
+            isMandatory: true,
+          },
+          {
+            stepNumber: 3,
+            title: 'Unggah Dokumen Persyaratan',
+            description: 'KTP asli, Kartu Keluarga (KK), Akta Kelahiran/Ijazah/Buku Nikah (pilih salah satu). Semua dokumen difoto dengan jelas.',
+            isMandatory: true,
+          },
+          {
+            stepNumber: 4,
+            title: 'Pilih Kantor Imigrasi dan Jadwal',
+            description: 'Pilih lokasi Kantor Imigrasi terdekat dan tentukan tanggal kedatangan yang tersedia.',
+            isMandatory: true,
+          },
+          {
+            stepNumber: 5,
+            title: 'Pembayaran Kode Billing',
+            description: 'Lakukan pembayaran biaya paspor melalui bank, ATM, mobile banking, atau e-commerce sebelum batas waktu kedaluwarsa billing.',
+            isMandatory: true,
+          },
+          {
+            stepNumber: 6,
+            title: 'Wawancara dan Pengambilan Biometrik',
+            description: 'Datang ke Kantor Imigrasi sesuai jadwal dengan membawa seluruh berkas asli. Petugas akan melakukan wawancara, pengambilan foto, dan sidik jari.',
+            isMandatory: true,
+          }
+        ]
+      }
+    }
+  })
+  console.log('✅ Topic seeded:', pasporTopic.title)
+
+  // 5. Create Topic: Layanan E-VOA
+  const evoaTopic = await seedPrisma.topic.create({
+    data: {
+      slug: 'layanan-evoa',
+      title: 'Layanan E-VOA (Electronic Visa on Arrival)',
+      description: 'Panduan pengajuan E-VOA bagi Warga Negara Asing (WNA) yang ingin berkunjung ke Indonesia untuk tujuan wisata atau kunjungan singkat.',
+      icon: 'globe',
+      requirements: {
+        create: [
+          {
+            stepNumber: 1,
+            title: 'Persiapkan Paspor yang Valid',
+            description: 'Paspor WNA harus berasal dari negara subjek VOA dan masih berlaku minimal 6 bulan.',
+            isMandatory: true,
+          },
+          {
+            stepNumber: 2,
+            title: 'Akses Portal Resmi Molina',
+            description: 'Buka website resmi imigrasi (molina.imigrasi.go.id) dan buat akun.',
+            isMandatory: true,
+          },
+          {
+            stepNumber: 3,
+            title: 'Isi Formulir Aplikasi E-VOA',
+            description: 'Masukkan informasi paspor, data diri, alamat tempat tinggal selama di Indonesia, dan unggah foto paspor.',
+            isMandatory: true,
+          },
+          {
+            stepNumber: 4,
+            title: 'Pembayaran Online',
+            description: 'Lakukan pembayaran biaya E-VOA menggunakan kartu kredit atau debit berlogo Visa/Mastercard/JCB.',
+            isMandatory: true,
+          },
+          {
+            stepNumber: 5,
+            title: 'Unduh E-VOA',
+            description: 'Setelah disetujui, E-VOA dapat diunduh dalam format PDF. Cetak atau simpan di perangkat digital untuk ditunjukkan pada saat kedatangan.',
+            isMandatory: true,
+          }
+        ]
+      }
+    }
+  })
+  console.log('✅ Topic seeded:', evoaTopic.title)
 
 }
 
