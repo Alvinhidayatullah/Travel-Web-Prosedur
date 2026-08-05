@@ -1,7 +1,7 @@
 import { getTopicBySlug } from "@/app/actions"
 import { notFound } from "next/navigation"
 import Link from "next/link"
-import { ArrowLeft, BookOpen, AlertCircle } from "lucide-react"
+import { ArrowLeft, AlertCircle } from "lucide-react"
 import { ScrollReveal } from "@/components/ui/ScrollReveal"
 import { TopicIcon } from "@/components/ui/TopicIcon"
 
@@ -15,7 +15,7 @@ export default async function TopicDetail({ params }: { params: { slug: string }
   return (
     <main className="min-h-screen bg-[#090A0F] text-white pb-24">
       {/* Header Banner */}
-      <div className="relative pt-32 pb-16 px-6 overflow-hidden border-b border-white/5 bg-black/40">
+      <div className="relative pt-12 pb-12 px-6 overflow-hidden border-b border-white/5 bg-black/40">
         <div className="absolute inset-0 bg-gradient-to-b from-neon-cyan/5 to-transparent pointer-events-none" />
         
         <div className="max-w-4xl mx-auto relative z-10">
