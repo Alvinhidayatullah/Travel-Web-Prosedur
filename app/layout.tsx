@@ -32,9 +32,9 @@ export default function RootLayout({
           <div className="max-w-6xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
             <div className="flex items-center gap-4">
               <img 
-                src="/logo-imigrasi.png" 
+                src="/logo-imigrasi.webp" 
                 alt="Logo Imigrasi" 
-                className="h-9 w-auto"
+                className="h-10 w-auto"
               />
               <div className="flex flex-col justify-center -space-y-0.5">
                 <h1 className="text-white font-bold text-sm md:text-base tracking-tight">Direktorat Jenderal Imigrasi</h1>
