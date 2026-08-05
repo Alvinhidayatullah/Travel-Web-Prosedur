@@ -10,13 +10,13 @@ interface Web3HeroProps {
 
 export default function Web3Hero({ title, subtitle }: Web3HeroProps) {
   return (
-    <section className="relative pt-20 pb-12 px-6 overflow-hidden min-h-[60vh] flex flex-col justify-center">
+    <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 px-6 overflow-hidden flex flex-col justify-center">
       {/* Background Image with Overlay */}
       <div 
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-20"
-        style={{ backgroundImage: "url('https://upload.wikimedia.org/wikipedia/commons/4/4b/Indonesian_passport.jpg')" }}
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-30 mix-blend-luminosity"
+        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1506012787146-f92b2d7d6d96?q=80&w=2069&auto=format&fit=crop')" }}
       />
-      <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#090A0F]/50 via-[#090A0F]/80 to-[#090A0F]" />
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#090A0F]/60 via-[#090A0F]/80 to-[#090A0F]" />
       
       {/* Ambient background glow */}
       <div className="absolute inset-0 bg-hero-glow pointer-events-none opacity-50 z-0" />
@@ -28,11 +28,11 @@ export default function Web3Hero({ title, subtitle }: Web3HeroProps) {
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
           
-          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.15] mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-slate-400">
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-[1.2] mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-slate-400 px-2">
             {title}
           </h1>
           
-          <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base md:text-xl text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed px-4">
             {subtitle}
           </p>
         </motion.div>
