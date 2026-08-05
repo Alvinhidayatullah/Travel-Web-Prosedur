@@ -101,3 +101,147 @@ export const mockProcedures = {
     { id: 9, title: "Pengambilan Bagasi", description: "Ambil bagasi di carousel yang ditentukan." }
   ]
 };
+
+export const topicsData = [
+  {
+    id: "syarat-umum-perjalanan",
+    slug: "syarat-umum-perjalanan",
+    title: "Syarat Umum Perjalanan ke Luar Negeri",
+    description: "Panduan lengkap persyaratan dokumen keberangkatan ke luar negeri sesuai standar Ditjen Imigrasi.",
+    icon: "plane",
+    createdAt: new Date("2024-01-01T00:00:00Z"),
+    updatedAt: new Date("2024-01-01T00:00:00Z"),
+    requirements: [
+      {
+        id: "req-1",
+        stepNumber: 1,
+        title: "Paspor Fisik Asli",
+        description: "Masih berlaku minimal 6 (enam) bulan sebelum tanggal kedaluwarsa.",
+        isMandatory: true,
+      },
+      {
+        id: "req-2",
+        stepNumber: 2,
+        title: "Visa (Jika Tidak Bebas Visa)",
+        description: "Sesuai dengan ketentuan negara tujuan. Pastikan visa sudah disetujui sebelum keberangkatan.",
+        isMandatory: true,
+      },
+      {
+        id: "req-3",
+        stepNumber: 3,
+        title: "Tiket Perjalanan Pulang Pergi (PP)",
+        description: "Tiket penerbangan yang sah sebagai bukti akan kembali ke negara asal.",
+        isMandatory: true,
+      },
+      {
+        id: "req-4",
+        stepNumber: 4,
+        title: "Lolos Pemeriksaan Imigrasi",
+        description: "Di Tempat Pemeriksaan Imigrasi (TPI), petugas akan memeriksa dokumen dan wawancara singkat.",
+        isMandatory: true,
+      }
+    ],
+    _count: { requirements: 4 }
+  },
+  {
+    id: "anak-di-bawah-umur",
+    slug: "anak-di-bawah-umur",
+    title: "Syarat Anak di Bawah Umur Tanpa Pendamping Orang Tua",
+    description: "Ketentuan khusus bagi anak di bawah umur yang bepergian ke luar negeri tanpa didampingi orang tua kandung.",
+    icon: "baby",
+    createdAt: new Date("2024-01-01T00:00:00Z"),
+    updatedAt: new Date("2024-01-01T00:00:00Z"),
+    requirements: [
+      {
+        id: "req-5",
+        stepNumber: 1,
+        title: "Paspor Anak",
+        description: "Paspor yang sah dan berlaku minimal 6 bulan milik anak.",
+        isMandatory: true,
+      },
+      {
+        id: "req-6",
+        stepNumber: 2,
+        title: "Surat Keterangan / Izin Orang Tua",
+        description: "Surat izin tertulis dari kedua orang tua kandung yang mengizinkan anak pergi tanpa pendampingan mereka, ditandatangani di atas materai.",
+        isMandatory: true,
+      },
+      {
+        id: "req-7",
+        stepNumber: 3,
+        title: "Salinan Identitas Orang Tua",
+        description: "Fotokopi KTP/Paspor orang tua kandung yang masih berlaku.",
+        isMandatory: true,
+      },
+      {
+        id: "req-8",
+        stepNumber: 4,
+        title: "Salinan Akta Kelahiran Anak",
+        description: "Untuk membuktikan hubungan darah antara anak dan orang tua.",
+        isMandatory: true,
+      },
+      {
+        id: "req-9",
+        stepNumber: 5,
+        title: "Salinan Kartu Keluarga (KK)",
+        description: "Menunjukkan daftar keluarga inti.",
+        isMandatory: true,
+      }
+    ],
+    _count: { requirements: 5 }
+  },
+  {
+    id: "pembuatan-paspor-baru",
+    slug: "pembuatan-paspor-baru",
+    title: "Prosedur Pembuatan Paspor Baru",
+    description: "Langkah-langkah dan persyaratan untuk mengajukan pembuatan paspor RI baru secara online melalui aplikasi M-Paspor.",
+    icon: "book",
+    createdAt: new Date("2024-01-01T00:00:00Z"),
+    updatedAt: new Date("2024-01-01T00:00:00Z"),
+    requirements: [
+      {
+        id: "req-10",
+        stepNumber: 1,
+        title: "Unduh Aplikasi M-Paspor",
+        description: "Aplikasi M-Paspor dapat diunduh melalui Google Play Store (Android) atau App Store (iOS).",
+        isMandatory: true,
+      },
+      {
+        id: "req-11",
+        stepNumber: 2,
+        title: "Pendaftaran dan Pengisian Data",
+        description: "Buat akun, pilih jenis paspor (biasa atau elektronik), dan isi formulir data diri dengan lengkap.",
+        isMandatory: true,
+      },
+      {
+        id: "req-12",
+        stepNumber: 3,
+        title: "Unggah Dokumen Persyaratan",
+        description: "KTP asli, Kartu Keluarga (KK), Akta Kelahiran/Ijazah/Buku Nikah (pilih salah satu). Semua dokumen difoto dengan jelas.",
+        isMandatory: true,
+      },
+      {
+        id: "req-13",
+        stepNumber: 4,
+        title: "Pilih Kantor Imigrasi dan Jadwal",
+        description: "Pilih lokasi Kantor Imigrasi terdekat dan tentukan tanggal kedatangan yang tersedia.",
+        isMandatory: true,
+      },
+      {
+        id: "req-14",
+        stepNumber: 5,
+        title: "Pembayaran Kode Billing",
+        description: "Lakukan pembayaran biaya paspor melalui bank, ATM, mobile banking, atau e-commerce sebelum batas waktu kedaluwarsa billing.",
+        isMandatory: true,
+      },
+      {
+        id: "req-15",
+        stepNumber: 6,
+        title: "Wawancara dan Pengambilan Biometrik",
+        description: "Datang ke Kantor Imigrasi sesuai jadwal dengan membawa seluruh berkas asli. Petugas akan melakukan wawancara, pengambilan foto, dan sidik jari.",
+        isMandatory: true,
+      }
+    ],
+    _count: { requirements: 6 }
+  }
+];

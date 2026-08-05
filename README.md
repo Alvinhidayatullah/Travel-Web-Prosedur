@@ -1,30 +1,22 @@
-# Travel3 - Web Imigrasi & Prosedur Perjalanan 🌍
+# Web Imigrasi & Prosedur Perjalanan 🌍
 
-Travel3 adalah portal informasi modern untuk prosedur imigrasi dan perjalanan antar-negara. Dibangun dengan desain terinspirasi dari tema Web3 (Glassmorphism, Neon Cyberpunk) yang memberikan nuansa futuristik, elegan, namun tetap mudah digunakan (*user-friendly*). 
+Portal informasi modern untuk prosedur imigrasi dan perjalanan. Dibangun dengan desain terinspirasi dari tema Web3 (Glassmorphism, Neon Cyberpunk) yang memberikan nuansa futuristik, elegan, namun tetap mudah digunakan (*user-friendly*). 
 
-Proyek ini telah dikembangkan dengan arsitektur **Next.js 14 (App Router)** dan disiapkan khusus agar dapat di-*deploy* secara mulus ke **Vercel**.
+Proyek ini telah dikembangkan dengan arsitektur **Next.js 14 (App Router) sebagai Static Frontend-Only** dan disiapkan khusus agar dapat di-*deploy* secara instan ke **Vercel** tanpa kerumitan pengaturan *database*.
 
 ## 🚀 Fitur Utama
 
 - **Tampilan Futuristis (Web3 Theme)**: Antarmuka cantik menggunakan efek *backdrop-filter*, *neon glow*, animasi *framer-motion*, dan gradien halus.
-- **Pencarian Cerdas**: Pengguna dapat mencari negara destinasi di halaman beranda.
-- **Rincian Prosedur Negara**: Halaman khusus untuk tiap negara yang menyajikan panduan perjalanan *(Checklist)* yang dibagi berdasarkan fase (Pra-Keberangkatan, Hari H, Penerbangan, Kedatangan).
-- **Unduh PDF Online**: Menghasilkan ringkasan dokumen prosedur perjalanan ke format PDF dengan desain *header/footer* khusus.
-- **Secure Admin CMS (Content Management System)**:
-  - Portal rahasi untuk menambah, mengedit, dan menghapus Destinasi serta Prosedur.
-  - Dropdown pintar yang menampung seluruh negara di dunia dan akan mengisi data (Bendera, Nama, Kode, Mata Uang) secara otomatis.
-- **Keamanan Enterprise-Grade (OWASP Top 10)**:
-  - **WAF & Rate Limiting**: Memblokir serangan bruteforce dan *scanner* (seperti SQLMap).
-  - **Zod Validation**: Mencegah serangan *Cross-Site Scripting* (XSS).
-  - **Strict Cache Control & CSP**: Mencegah kebocoran data sensitif dan eksekusi skrip jahat.
+- **Daftar Panduan Imigrasi**: Menampilkan topik-topik krusial seperti Syarat Umum Perjalanan, Anak di Bawah Umur, dan Pembuatan Paspor Baru secara interaktif.
+- **Rincian Prosedur**: Halaman khusus untuk tiap panduan yang menyajikan langkah-langkah persyaratan *(Timeline)* dengan animasi gulir (*scroll reveal*).
+- **Frontend-Only**: Berjalan 100% di sisi *client* dan *build-time*, sehingga dijamin tidak ada *error* ketika di-*hosting* ke Vercel.
 
 ## 🛠 Teknologi yang Digunakan
 - **Framework**: Next.js 14 (React 18)
 - **Styling**: Tailwind CSS, Vanilla CSS (`globals.css`)
 - **Animasi**: Framer Motion
-- **Database**: Prisma ORM dengan SQLite (Bisa dengan mudah dimigrasi ke Postgres)
-- **Otentikasi & Keamanan**: `jose` (JWT), `bcryptjs`, `zod`
-- **Utilitas Tambahan**: `jspdf`, `html2canvas`, `lucide-react`
+- **Ikon**: `lucide-react`
+- **Arsitektur**: Serverless Static Data (`lib/data.ts`)
 
 ## 📦 Panduan Menjalankan Secara Lokal
 
@@ -39,34 +31,20 @@ Proyek ini telah dikembangkan dengan arsitektur **Next.js 14 (App Router)** dan 
    npm install
    ```
 
-3. **Siapkan Database (SQLite):**
-   ```bash
-   npx prisma generate
-   npx prisma db push
-   npx tsx scripts/seed.ts
-   ```
-
-4. **Jalankan Server Development:**
+3. **Jalankan Server Development:**
    ```bash
    npm run dev
    ```
-
-5. **Akses Portal Admin:**
-   - URL: `http://localhost:3000/secure-admin/login`
-   - Username: `admin_imigrasi`
-   - Password: `admin_imigrasi`
+   Aplikasi akan berjalan di `http://localhost:3000` (atau port 3001).
 
 ## ☁️ Panduan Deploy ke Vercel
 
-Proyek ini telah dikonfigurasi sepenuhnya untuk Vercel.
+Proyek ini telah dikonfigurasi sepenuhnya untuk Vercel. Karena menggunakan arsitektur statis (*Frontend-Only*), proses *deploy* akan berjalan sangat mulus.
 
 1. Hubungkan akun GitHub Anda ke [Vercel](https://vercel.com/).
 2. Buat **New Project** dan *import* repositori `Travel-Web-Prosedur`.
-3. Di bagian pengaturan (*Environment Variables*), tambahkan:
-   - `JWT_SECRET` = `(Isi dengan teks rahasia yang panjang)`
-4. Klik **Deploy**.
-
-> **Catatan Database:** Secara *default*, aplikasi ini menggunakan SQLite untuk demonstrasi. Di lingkungan *Serverless* seperti Vercel, data SQLite tidak akan tersimpan permanen. Untuk penggunaan komersial, sangat disarankan mengubah URL *database* di file `.env` ke penyedia **PostgreSQL** seperti Vercel Postgres atau Supabase.
+3. Klik **Deploy**.
+4. Selesai! Web Anda akan langsung aktif tanpa perlu mengatur *Environment Variables* atau *Database*.
 
 ---
 *Dibangun dengan ❤️ untuk memberikan pengalaman perjalanan generasi berikutnya.*

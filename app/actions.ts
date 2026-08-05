@@ -1,25 +1,11 @@
 "use server"
 
-import prisma from "@/lib/prisma"
+import { topicsData } from "@/lib/data"
 
 export async function getTopics() {
-  return await prisma.topic.findMany({
-    orderBy: { createdAt: 'asc' },
-    include: {
-      _count: {
-        select: { requirements: true }
-      }
-    }
-  })
+  return topicsData;
 }
 
 export async function getTopicBySlug(slug: string) {
-  return await prisma.topic.findUnique({
-    where: { slug },
-    include: {
-      requirements: {
-        orderBy: { stepNumber: 'asc' }
-      }
-    }
-  })
+  return topicsData.find(t => t.slug === slug) || null;
 }
