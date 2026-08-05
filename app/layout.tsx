@@ -16,6 +16,9 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "IMIGRASI & INFOGRAFIS",
   description: "Portal Infografis Prosedur Keimigrasian Republik Indonesia",
+  icons: {
+    icon: "/logo-imigrasi.webp",
+  },
 };
 
 export default function RootLayout({
