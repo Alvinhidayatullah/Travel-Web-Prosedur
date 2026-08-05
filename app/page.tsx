@@ -1,90 +1,58 @@
-"use client"
-
-import * as React from "react"
-import { Web3Hero } from "@/components/ui/Web3Hero"
-import { GlassCard } from "@/components/ui/GlassCard"
-import { NeonButton } from "@/components/ui/NeonButton"
-import { getCountries } from "@/app/actions"
-import type { Country } from "@prisma/client"
+import { getTopics } from "./actions"
 import Link from "next/link"
-import { ArrowRight, PlaneTakeoff, ShieldCheck, Zap } from "lucide-react"
+import { GlassCard } from "@/components/ui/GlassCard"
+import Web3Hero from "@/components/ui/Web3Hero"
+import { BookOpen, ShieldCheck, ArrowRight } from "lucide-react"
 
-export default function Home() {
-  const [searchQuery, setSearchQuery] = React.useState("")
-  const [countries, setCountries] = React.useState<Country[]>([])
+export const revalidate = 0 // Disable cache for MVP so data is always fresh
 
-  React.useEffect(() => {
-    async function fetchData() {
-      const data = await getCountries()
-      setCountries(data)
-    }
-    fetchData()
-  }, [])
-
-  const filteredCountries = countries.filter((country) =>
-    country.name.toLowerCase().includes(searchQuery.toLowerCase())
-  )
-
-  const displayCountries = searchQuery ? filteredCountries : filteredCountries.slice(0, 8)
+export default async function Home() {
+  const topics = await getTopics()
 
   return (
-    <main className="min-h-screen pb-20">
-      <Web3Hero searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+    <main className="min-h-screen bg-[#090A0F] text-white selection:bg-neon-cyan/30">
+      <Web3Hero 
+        title={<>Portal Panduan Lengkap <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan via-neon-violet to-neon-cyan animate-pulse-slow">Keimigrasian & Perjalanan</span></>}
+        subtitle="Temukan semua informasi resmi terkait prosedur keimigrasian, paspor, visa, dan syarat keberangkatan khusus (seperti anak di bawah umur) dalam format infografis interaktif."
+      />
 
-      <section className="max-w-6xl mx-auto px-6 mt-12">
-        <div className="flex flex-col sm:flex-row items-center justify-between mb-10 gap-6">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white w-full sm:w-auto">
-            {searchQuery ? "Hasil Pencarian" : "Destinasi Populer"}
-          </h2>
-          {!searchQuery && (
-            <Link href="/destinasi" className="w-full sm:w-auto">
-              <NeonButton variant="cyan" className="text-sm md:text-base px-6 py-2.5 w-full">Lihat Semua</NeonButton>
-            </Link>
-          )}
+      {/* Main Content */}
+      <div className="max-w-6xl mx-auto px-4 md:px-8 py-20 relative z-10">
+        
+        <div className="flex items-center gap-3 mb-10">
+          <ShieldCheck className="w-8 h-8 text-neon-cyan" />
+          <h2 className="text-2xl font-bold">Topik Panduan</h2>
         </div>
 
-        {displayCountries.length === 0 ? (
-          <div className="text-center py-16 text-lg text-slate-400">
-            Negara tidak ditemukan. Silakan coba kata kunci lain.
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {displayCountries.map((country) => (
-              <Link key={country.id} href={`/go/${country.code.toLowerCase()}`} className="flex">
-                <GlassCard 
-                  className="group cursor-pointer hover:-translate-y-2 transition-transform duration-300 w-full flex flex-col"
-                  glowColor={country.visaType === "Bebas Visa" ? "green" : "violet"}
-                >
-                  <div className="relative h-48 overflow-hidden rounded-t-2xl">
-                    <div className="absolute inset-0 bg-slate-900/40 z-10 group-hover:bg-slate-900/10 transition-colors duration-300" />
-                    <img 
-                      src={country.coverImage} 
-                      alt={country.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute top-4 right-4 z-20 text-4xl">
-                      {country.flagUrl}
-                    </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {topics.map((topic) => (
+            <Link key={topic.id} href={`/topic/${topic.slug}`}>
+              <GlassCard className="h-full p-6 hover:border-neon-cyan/40 transition-all duration-300 hover:shadow-[0_0_30px_rgba(34,211,238,0.1)] group flex flex-col">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-neon-cyan/20 to-neon-violet/20 flex items-center justify-center border border-white/10 text-3xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                  {topic.icon.length > 2 && /^[a-zA-Z-]+$/.test(topic.icon) ? <BookOpen className="w-7 h-7 text-neon-cyan" /> : topic.icon}
+                </div>
+                
+                <h3 className="text-xl font-bold mb-3 group-hover:text-neon-cyan transition-colors">{topic.title}</h3>
+                <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-1">{topic.description}</p>
+                
+                <div className="flex items-center justify-between pt-4 border-t border-white/10 mt-auto text-sm">
+                  <span className="text-slate-500">{topic._count?.requirements || 0} Persyaratan</span>
+                  <div className="flex items-center gap-2 text-neon-cyan">
+                    <span>Lihat Infografis</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>
-                  
-                  <div className="p-6 flex flex-col flex-grow">
-                    <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">{country.name}</h3>
-                    <div className="flex items-center gap-2 mt-auto">
-                      <span className={`text-sm font-semibold px-3 py-1.5 rounded-md border ${
-                        country.visaType === "Bebas Visa" 
-                          ? "bg-neon-green/10 text-neon-green border-neon-green/30" 
-                          : "bg-neon-violet/10 text-neon-violet border-neon-violet/30"
-                      }`}>
-                        {country.visaType}
-                      </span>
-                    </div>
-                  </div>
-                </GlassCard>
-              </Link>
-            ))}
-          </div>
-        )}
-      </section>
+                </div>
+              </GlassCard>
+            </Link>
+          ))}
+          
+          {topics.length === 0 && (
+            <div className="col-span-full py-20 text-center text-slate-500 border border-dashed border-white/10 rounded-2xl">
+              Belum ada panduan tersedia.
+            </div>
+          )}
+        </div>
+      </div>
     </main>
   )
 }

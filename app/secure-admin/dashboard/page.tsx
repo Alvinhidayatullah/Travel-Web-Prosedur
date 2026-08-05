@@ -1,239 +1,185 @@
 "use client"
 
 import * as React from "react"
-import { getCountries } from "@/app/actions"
-import { addCountry, deleteCountry, updateCountry } from "@/app/actions/admin"
-import type { Country } from "@prisma/client"
-import { Plus, Edit2, Trash2, Loader2 } from "lucide-react"
+import { getTopics } from "@/app/actions"
+import { addTopic, deleteTopic, updateTopic } from "@/app/actions/admin"
+import { Plus, Edit2, Trash2, Loader2, BookOpen } from "lucide-react"
 import { GlassCard } from "@/components/ui/GlassCard"
 import { NeonButton } from "@/components/ui/NeonButton"
-import { worldCountries } from "@/lib/countries"
-
-// Simple mapping for auto-filling currency based on some popular flags/countries
-const currencyMap: Record<string, string> = {
-  "🇸🇬": "SGD", "🇯🇵": "JPY", "🇰🇷": "KRW", "🇬🇧": "GBP", "🇲🇾": "MYR",
-  "🇹🇭": "THB", "🇦🇺": "AUD", "🇺🇸": "USD", "🇦🇪": "AED", "🇩🇪": "EUR",
-  "🇫🇷": "EUR", "🇮🇹": "EUR", "🇪🇸": "EUR", "🇳🇱": "EUR", "🇨🇳": "CNY",
-  "🇮🇳": "INR", "🇸🇦": "SAR", "🇹🇷": "TRY", "🇷🇺": "RUB", "🇧🇷": "BRL"
-}
+import Link from "next/link"
 
 export default function AdminDashboard() {
-  const [countries, setCountries] = React.useState<Country[]>([])
+  const [topics, setTopics] = React.useState<any[]>([])
   const [isLoading, setIsLoading] = React.useState(true)
   const [isSubmitting, setIsSubmitting] = React.useState(false)
   const [editingId, setEditingId] = React.useState<string | null>(null)
-
-  // Form State
+  
   const [formData, setFormData] = React.useState({
-    code: "", name: "", flagUrl: "", coverImage: "", visaType: "Bebas Visa", currency: ""
+    title: "", description: "", icon: "", slug: ""
   })
 
   React.useEffect(() => {
-    loadCountries()
+    loadTopics()
   }, [])
 
-  const loadCountries = async () => {
+  const loadTopics = async () => {
     setIsLoading(true)
-    const data = await getCountries()
-    setCountries(data)
+    const data = await getTopics()
+    setTopics(data)
     setIsLoading(false)
-  }
-
-  // Automasi Mata Uang & Bendera ketika Negara Dipilih
-  const handleCountrySelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedCode = e.target.value
-    const country = worldCountries.find(c => c.code === selectedCode)
-    
-    if (country) {
-      setFormData({ 
-        ...formData, 
-        code: country.code,
-        name: country.name,
-        flagUrl: country.flag, 
-        currency: country.currency 
-      })
-    }
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-
+    
     const fd = new FormData()
     Object.entries(formData).forEach(([k, v]) => fd.append(k, v))
-
+    
     if (editingId) {
-      await updateCountry(editingId, fd)
+      await updateTopic(editingId, fd)
+      setEditingId(null)
     } else {
-      await addCountry(fd)
+      await addTopic(fd)
     }
-
-    await loadCountries()
-    resetForm()
+    
+    setFormData({ title: "", description: "", icon: "", slug: "" })
+    await loadTopics()
     setIsSubmitting(false)
   }
 
-  const handleEdit = (c: Country) => {
-    setEditingId(c.id)
+  const handleEdit = (topic: any) => {
+    setEditingId(topic.id)
     setFormData({
-      code: c.code, name: c.name, flagUrl: c.flagUrl,
-      coverImage: c.coverImage, visaType: c.visaType, currency: c.currency
+      title: topic.title,
+      description: topic.description,
+      icon: topic.icon,
+      slug: topic.slug
     })
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const handleDelete = async (id: string) => {
-    if (confirm("Apakah Anda yakin ingin menghapus destinasi ini? Semua prosedur di dalamnya juga akan terhapus.")) {
-      await deleteCountry(id)
-      await loadCountries()
+    if (confirm("Yakin ingin menghapus topik ini? Semua data persyaratan di dalamnya akan ikut terhapus.")) {
+      await deleteTopic(id)
+      await loadTopics()
     }
   }
 
-  const resetForm = () => {
-    setEditingId(null)
-    setFormData({ code: "", name: "", flagUrl: "", coverImage: "", visaType: "Bebas Visa", currency: "" })
-  }
-
-  if (isLoading) return <div className="flex justify-center p-20"><Loader2 className="w-8 h-8 animate-spin text-neon-cyan" /></div>
-
   return (
-    <div className="space-y-10">
-      <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-white tracking-tight">Manajemen Destinasi</h1>
+    <div className="space-y-8">
+      <div className="flex justify-between items-center">
+        <h1 className="text-2xl font-bold text-white">Manajemen Topik Panduan</h1>
       </div>
 
-      {/* Add / Edit Form */}
-      <GlassCard className="p-6 border-white/10" glowColor={editingId ? "violet" : "cyan"}>
-        <h2 className="text-xl font-semibold text-white mb-6">
-          {editingId ? "Edit Destinasi" : "Tambah Destinasi Baru"}
+      <GlassCard className="p-6">
+        <h2 className="text-xl font-bold text-white mb-6">
+          {editingId ? "Edit Topik" : "Tambah Topik Baru"}
         </h2>
         <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="space-y-2 md:col-span-2">
-            <label className="text-sm font-medium text-slate-300">Pilih Negara dari Seluruh Dunia</label>
-            <select 
-              onChange={handleCountrySelect}
-              className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white appearance-none"
-              defaultValue=""
-            >
-              <option value="" disabled>-- Pilih Negara untuk Isi Otomatis --</option>
-              {worldCountries.map(c => (
-                <option key={c.code} value={c.code}>
-                  {c.flag} {c.name}
-                </option>
-              ))}
-            </select>
-            <p className="text-xs text-slate-500">Ikon, Nama, Kode, dan Mata uang akan terisi otomatis setelah dipilih.</p>
-          </div>
-
-          <div className="space-y-2 hidden">
-            {/* Hidden fields just to hold the automated values if we still want them submitted manually,
-                or we can just keep them visible so admin can edit if needed */}
-          </div>
           
           <div className="space-y-2">
-            <label className="text-sm font-medium text-slate-300">Ikon/Bendera</label>
+            <label className="text-sm font-medium text-slate-300">Judul Topik</label>
             <input 
-              type="text" required value={formData.flagUrl} onChange={e => setFormData({...formData, flagUrl: e.target.value})}
-              className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-white text-xl"
-              placeholder="🇯🇵"
-            />
-          </div>
-          
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-slate-300">Nama Negara</label>
-            <input 
-              type="text" required value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})}
+              type="text" required value={formData.title} onChange={e => setFormData({...formData, title: e.target.value})}
               className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-white"
-              placeholder="Jepang"
+              placeholder="Contoh: Syarat Anak di Bawah Umur"
             />
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium text-slate-300">Kode Negara (2 Huruf)</label>
+            <label className="text-sm font-medium text-slate-300">URL Slug (Otomatis jika kosong)</label>
             <input 
-              type="text" required maxLength={2} value={formData.code} onChange={e => setFormData({...formData, code: e.target.value.toUpperCase()})}
+              type="text" value={formData.slug} onChange={e => setFormData({...formData, slug: e.target.value.toLowerCase().replace(/[^a-z0-9]+/g, '-')})}
               className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-white"
-              placeholder="JP"
+              placeholder="anak-dibawah-umur"
             />
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium text-slate-300">Mata Uang</label>
+            <label className="text-sm font-medium text-slate-300">Ikon Lucide (nama ikon) / Emoji</label>
             <input 
-              type="text" required value={formData.currency} onChange={e => setFormData({...formData, currency: e.target.value.toUpperCase()})}
+              type="text" required value={formData.icon} onChange={e => setFormData({...formData, icon: e.target.value})}
               className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-white"
-              placeholder="JPY"
-            />
-          </div>
-
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-slate-300">Tipe Visa (Ketik Bebas)</label>
-            <input 
-              type="text" required value={formData.visaType} onChange={e => setFormData({...formData, visaType: e.target.value})}
-              className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-white"
-              placeholder="e-Visa, Bebas Visa, Visa Kedutaan..."
+              placeholder="baby"
             />
           </div>
 
           <div className="space-y-2 md:col-span-2">
-            <label className="text-sm font-medium text-slate-300">URL Gambar Cover</label>
-            <input 
-              type="url" required value={formData.coverImage} onChange={e => setFormData({...formData, coverImage: e.target.value})}
-              className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-white"
-              placeholder="https://images.unsplash.com/photo-..."
+            <label className="text-sm font-medium text-slate-300">Deskripsi Singkat</label>
+            <textarea 
+              required value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})}
+              className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-white h-24"
+              placeholder="Panduan khusus untuk..."
             />
           </div>
 
-          <div className="md:col-span-2 flex gap-3 mt-2">
-            <NeonButton type="submit" variant="cyan" disabled={isSubmitting} className="flex-1 py-3">
-              {isSubmitting ? <Loader2 className="w-5 h-5 animate-spin mx-auto" /> : (editingId ? "Simpan Perubahan" : "Tambahkan Destinasi")}
-            </NeonButton>
+          <div className="md:col-span-2 flex justify-end gap-3 mt-2">
             {editingId && (
-              <button type="button" onClick={resetForm} className="px-6 rounded-xl border border-white/20 text-white hover:bg-white/10">Batal</button>
+              <button 
+                type="button"
+                onClick={() => {
+                  setEditingId(null)
+                  setFormData({ title: "", description: "", icon: "", slug: "" })
+                }}
+                className="px-6 py-2.5 rounded-xl border border-white/10 text-white hover:bg-white/5 transition-all"
+              >
+                Batal
+              </button>
             )}
+            <NeonButton disabled={isSubmitting}>
+              {isSubmitting ? <Loader2 className="w-5 h-5 animate-spin" /> : (editingId ? "Simpan Perubahan" : "Tambahkan Topik")}
+            </NeonButton>
           </div>
         </form>
       </GlassCard>
 
-      {/* List of Countries */}
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-        {countries.map(country => (
-          <GlassCard key={country.id} className="p-5 flex flex-col border-white/5" glowColor="violet">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {isLoading ? (
+          <div className="col-span-full flex justify-center py-12">
+            <Loader2 className="w-8 h-8 text-neon-cyan animate-spin" />
+          </div>
+        ) : topics.map((topic) => (
+          <GlassCard key={topic.id} className="p-6 flex flex-col">
             <div className="flex justify-between items-start mb-4">
-              <div className="flex items-center gap-3">
-                <span className="text-4xl">{country.flagUrl}</span>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-neon-cyan/20 flex items-center justify-center border border-neon-cyan/30 text-2xl">
+                  {topic.icon.length > 2 && /^[a-zA-Z-]+$/.test(topic.icon) ? <BookOpen className="w-6 h-6 text-neon-cyan" /> : topic.icon}
+                </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white leading-tight">{country.name}</h3>
-                  <p className="text-xs text-slate-400 font-mono mt-1">{country.code}</p>
+                  <h3 className="text-xl font-bold text-white">{topic.title}</h3>
+                  <p className="text-sm text-slate-400">/{topic.slug}</p>
                 </div>
               </div>
               <div className="flex gap-2">
-                <button onClick={() => handleEdit(country)} className="p-2 bg-white/5 hover:bg-white/20 rounded-lg text-slate-300 transition-colors">
+                <button onClick={() => handleEdit(topic)} className="p-2 hover:bg-white/10 rounded-lg text-slate-300 transition-colors">
                   <Edit2 className="w-4 h-4" />
                 </button>
-                <button onClick={() => handleDelete(country.id)} className="p-2 bg-red-500/10 hover:bg-red-500/30 rounded-lg text-red-400 transition-colors">
+                <button onClick={() => handleDelete(topic.id)} className="p-2 hover:bg-red-500/20 rounded-lg text-red-400 transition-colors">
                   <Trash2 className="w-4 h-4" />
                 </button>
               </div>
             </div>
             
-            <div className="mt-auto space-y-2 text-sm pt-4 border-t border-white/5">
-              <div className="flex justify-between">
-                <span className="text-slate-500">Mata Uang</span>
-                <span className="text-slate-300 font-medium">{country.currency}</span>
+            <p className="text-slate-300 text-sm mb-6 flex-1 line-clamp-2">{topic.description}</p>
+            
+            <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/10">
+              <div className="text-sm text-slate-400">
+                <span className="text-neon-cyan font-bold">{topic._count?.requirements || 0}</span> Syarat/Langkah
               </div>
-              <div className="flex justify-between mb-3">
-                <span className="text-slate-500">Tipe Visa</span>
-                <span className="text-slate-300 font-medium">{country.visaType}</span>
-              </div>
-              <a href={`/secure-admin/dashboard/country/${country.code.toLowerCase()}`} className="block">
-                <button className="w-full py-2 bg-white/5 hover:bg-white/10 text-neon-cyan border border-white/10 rounded-lg text-sm font-medium transition-all">
-                  Kelola Prosedur
+              <Link href={`/secure-admin/dashboard/topic/${topic.slug}`}>
+                <button className="text-sm bg-white/5 hover:bg-white/10 border border-white/10 text-white px-4 py-2 rounded-lg transition-all">
+                  Kelola Persyaratan →
                 </button>
-              </a>
+              </Link>
             </div>
           </GlassCard>
         ))}
+        {topics.length === 0 && !isLoading && (
+          <div className="col-span-full text-center py-12 text-slate-400">
+            Belum ada topik panduan. Silakan tambahkan di atas.
+          </div>
+        )}
       </div>
     </div>
   )

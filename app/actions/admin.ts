@@ -8,154 +8,136 @@ import { z } from "zod"
 
 const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET || 'travel3-super-secret-key-12345')
 
-// Zod Schemas for Validation (Anti XSS & Injection)
-const countrySchema = z.object({
-  code: z.string().length(2).toUpperCase(),
-  name: z.string().min(2).max(100),
-  flagUrl: z.string().min(1).max(20),
-  coverImage: z.string().url(),
-  visaType: z.string().min(2).max(50),
-  currency: z.string().min(1).max(10)
+// Zod Schemas
+const topicSchema = z.object({
+  slug: z.string().min(2).max(100),
+  title: z.string().min(5).max(150),
+  description: z.string().max(500),
+  icon: z.string().min(1).max(50),
 })
 
-const procedureSchema = z.object({
-  countryId: z.string().uuid(),
-  phase: z.string(),
+const requirementSchema = z.object({
+  topicId: z.string().uuid(),
   title: z.string().min(3).max(200),
-  description: z.string().max(1000)
+  description: z.string().max(1000),
 })
 
-// Helper function to check admin auth
 async function checkAdmin() {
   const token = cookies().get('admin_token')?.value
   if (!token) throw new Error("Unauthorized")
-  
-  try {
-    await jwtVerify(token, JWT_SECRET)
-  } catch {
-    throw new Error("Unauthorized")
-  }
+  try { await jwtVerify(token, JWT_SECRET) } 
+  catch { throw new Error("Unauthorized") }
 }
 
-export async function addCountry(formData: FormData) {
+export async function addTopic(formData: FormData) {
   try {
     await checkAdmin()
     
-    // Validate Input
-    const parsed = countrySchema.parse({
-      code: formData.get('code'),
-      name: formData.get('name'),
-      flagUrl: formData.get('flagUrl'),
-      coverImage: formData.get('coverImage'),
-      visaType: formData.get('visaType'),
-      currency: formData.get('currency')
+    // Slugify title if slug not provided correctly
+    let rawSlug = formData.get('slug') as string
+    if (!rawSlug) {
+       rawSlug = (formData.get('title') as string).toLowerCase().replace(/[^a-z0-9]+/g, '-')
+    }
+    
+    const parsed = topicSchema.parse({
+      slug: rawSlug,
+      title: formData.get('title'),
+      description: formData.get('description'),
+      icon: formData.get('icon'),
     })
 
-    const country = await prisma.country.create({
+    const topic = await prisma.topic.create({
       data: parsed
     })
     
     revalidatePath('/')
-    revalidatePath('/destinasi')
-    return { success: true, country }
+    revalidatePath('/secure-admin/dashboard')
+    return { success: true, topic }
   } catch (error) {
-    // Anti Sensitive Data Exposure (No error details leaked)
     return { error: "Terjadi kesalahan sistem atau format data tidak valid." }
   }
 }
 
-export async function updateCountry(id: string, formData: FormData) {
+export async function updateTopic(id: string, formData: FormData) {
   try {
     await checkAdmin()
-    
-    // Validate ID format
-    if (!z.string().uuid().safeParse(id).success) {
-      throw new Error("Invalid ID")
+    if (!z.string().uuid().safeParse(id).success) throw new Error("Invalid ID")
+
+    let rawSlug = formData.get('slug') as string
+    if (!rawSlug) {
+       rawSlug = (formData.get('title') as string).toLowerCase().replace(/[^a-z0-9]+/g, '-')
     }
 
-    const parsed = countrySchema.parse({
-      code: formData.get('code'),
-      name: formData.get('name'),
-      flagUrl: formData.get('flagUrl'),
-      coverImage: formData.get('coverImage'),
-      visaType: formData.get('visaType'),
-      currency: formData.get('currency')
+    const parsed = topicSchema.parse({
+      slug: rawSlug,
+      title: formData.get('title'),
+      description: formData.get('description'),
+      icon: formData.get('icon'),
     })
 
-    const country = await prisma.country.update({
+    const topic = await prisma.topic.update({
       where: { id },
       data: parsed
     })
     
     revalidatePath('/')
-    revalidatePath('/destinasi')
-    revalidatePath(`/go/${parsed.code.toLowerCase()}`)
-    return { success: true, country }
+    revalidatePath('/secure-admin/dashboard')
+    revalidatePath(`/topic/${parsed.slug}`)
+    return { success: true, topic }
   } catch (error) {
     return { error: "Terjadi kesalahan saat memproses data." }
   }
 }
 
-export async function deleteCountry(id: string) {
+export async function deleteTopic(id: string) {
   try {
     await checkAdmin()
+    if (!z.string().uuid().safeParse(id).success) throw new Error("Invalid ID")
     
-    if (!z.string().uuid().safeParse(id).success) {
-      throw new Error("Invalid ID")
-    }
-    
-    await prisma.country.delete({
-      where: { id }
-    })
-    
+    await prisma.topic.delete({ where: { id } })
     revalidatePath('/')
-    revalidatePath('/destinasi')
+    revalidatePath('/secure-admin/dashboard')
     return { success: true }
   } catch (error) {
     return { error: "Terjadi kesalahan sistem." }
   }
 }
 
-export async function addProcedure(formData: FormData) {
+export async function addRequirement(formData: FormData) {
   try {
     await checkAdmin()
     
-    const parsed = procedureSchema.parse({
-      countryId: formData.get('countryId'),
-      phase: formData.get('phase'),
+    const parsed = requirementSchema.parse({
+      topicId: formData.get('topicId'),
       title: formData.get('title'),
       description: formData.get('description')
     })
     
-    const p = await prisma.procedure.create({
+    const count = await prisma.requirement.count({ where: { topicId: parsed.topicId } })
+
+    const req = await prisma.requirement.create({
       data: {
         ...parsed,
-        stepNumber: 0 // Simplification for MVP
+        stepNumber: count + 1
       }
     })
     
     revalidatePath('/')
-    revalidatePath('/destinasi')
-    return { success: true, procedure: p }
+    revalidatePath(`/secure-admin/dashboard/topic/[slug]`)
+    return { success: true, requirement: req }
   } catch (error) {
-    return { error: "Data prosedur tidak valid atau terjadi kesalahan sistem." }
+    return { error: "Data persyaratan tidak valid." }
   }
 }
 
-export async function deleteProcedure(id: string) {
+export async function deleteRequirement(id: string) {
   try {
     await checkAdmin()
+    if (!z.string().uuid().safeParse(id).success) throw new Error("Invalid ID")
     
-    if (!z.string().uuid().safeParse(id).success) {
-      throw new Error("Invalid ID")
-    }
-    
-    await prisma.procedure.delete({
-      where: { id }
-    })
+    await prisma.requirement.delete({ where: { id } })
     
     revalidatePath('/')
-    revalidatePath('/destinasi')
     return { success: true }
   } catch (error) {
     return { error: "Gagal menghapus data." }

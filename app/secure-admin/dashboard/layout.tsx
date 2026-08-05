@@ -34,7 +34,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               : 'text-slate-400 hover:text-white hover:bg-white/5 border border-transparent'
             }`}>
             <Map className="w-5 h-5" />
-            <span className="font-medium text-sm">Destinasi</span>
+            <span className="font-medium text-sm">Topik Panduan</span>
           </Link>
         </nav>
 
