@@ -10,7 +10,7 @@ interface Web3HeroProps {
 
 export default function Web3Hero({ title, subtitle }: Web3HeroProps) {
   return (
-    <section className="relative pt-32 pb-20 px-6 overflow-hidden">
+    <section className="relative pt-20 pb-12 px-6 overflow-hidden">
       {/* Ambient background glow */}
       <div className="absolute inset-0 bg-hero-glow pointer-events-none opacity-50" />
       

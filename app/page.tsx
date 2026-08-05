@@ -18,7 +18,7 @@ export default async function Home() {
       />
 
       {/* Main Content */}
-      <div className="max-w-6xl mx-auto px-4 md:px-8 py-20 relative z-10">
+      <div className="max-w-6xl mx-auto px-4 md:px-8 pb-20 pt-4 relative z-10">
         
         <div className="flex items-center gap-3 mb-10">
           <ShieldCheck className="w-8 h-8 text-neon-cyan" />
