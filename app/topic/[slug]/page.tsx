@@ -3,6 +3,7 @@ import { notFound } from "next/navigation"
 import Link from "next/link"
 import { ArrowLeft, BookOpen, AlertCircle } from "lucide-react"
 import { ScrollReveal } from "@/components/ui/ScrollReveal"
+import { TopicIcon } from "@/components/ui/TopicIcon"
 
 export const revalidate = 0
 
@@ -25,7 +26,7 @@ export default async function TopicDetail({ params }: { params: { slug: string }
           
           <div className="flex items-start gap-6">
             <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-neon-cyan/20 to-neon-violet/20 flex items-center justify-center border border-white/10 text-4xl shrink-0">
-              {topic.icon.length > 2 && /^[a-zA-Z-]+$/.test(topic.icon) ? <BookOpen className="w-8 h-8 text-neon-cyan" /> : topic.icon}
+              <TopicIcon name={topic.icon} className="w-8 h-8 text-neon-cyan" />
             </div>
             <div>
               <h1 className="text-3xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">

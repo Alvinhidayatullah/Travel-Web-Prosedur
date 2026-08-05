@@ -10,9 +10,16 @@ interface Web3HeroProps {
 
 export default function Web3Hero({ title, subtitle }: Web3HeroProps) {
   return (
-    <section className="relative pt-20 pb-12 px-6 overflow-hidden">
+    <section className="relative pt-20 pb-12 px-6 overflow-hidden min-h-[60vh] flex flex-col justify-center">
+      {/* Background Image with Overlay */}
+      <div 
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-20"
+        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1556388158-158ea5ccacbd?q=80&w=2070&auto=format&fit=crop')" }}
+      />
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#090A0F]/50 via-[#090A0F]/80 to-[#090A0F]" />
+      
       {/* Ambient background glow */}
-      <div className="absolute inset-0 bg-hero-glow pointer-events-none opacity-50" />
+      <div className="absolute inset-0 bg-hero-glow pointer-events-none opacity-50 z-0" />
       
       <div className="relative z-10 max-w-4xl mx-auto text-center">
         <motion.div

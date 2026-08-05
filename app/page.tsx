@@ -3,7 +3,8 @@ import Link from "next/link"
 import { GlassCard } from "@/components/ui/GlassCard"
 import Web3Hero from "@/components/ui/Web3Hero"
 import { ScrollReveal } from "@/components/ui/ScrollReveal"
-import { BookOpen, ShieldCheck, ArrowRight } from "lucide-react"
+import { TopicIcon } from "@/components/ui/TopicIcon"
+import { ShieldCheck, ArrowRight } from "lucide-react"
 
 export const revalidate = 0 // Disable cache for MVP so data is always fresh
 
@@ -31,7 +32,7 @@ export default async function Home() {
               <Link href={`/topic/${topic.slug}`} className="block h-full">
                 <GlassCard className="h-full p-6 hover:border-neon-cyan/40 transition-all duration-300 hover:shadow-[0_0_30px_rgba(34,211,238,0.1)] group flex flex-col">
                   <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-neon-cyan/20 to-neon-violet/20 flex items-center justify-center border border-white/10 text-3xl mb-6 group-hover:scale-110 transition-transform duration-300">
-                    {topic.icon.length > 2 && /^[a-zA-Z-]+$/.test(topic.icon) ? <BookOpen className="w-7 h-7 text-neon-cyan" /> : topic.icon}
+                    <TopicIcon name={topic.icon} className="w-7 h-7 text-neon-cyan" />
                   </div>
                   
                   <h3 className="text-xl font-bold mb-3 group-hover:text-neon-cyan transition-colors">{topic.title}</h3>

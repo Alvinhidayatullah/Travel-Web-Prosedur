@@ -4,7 +4,8 @@ interface TopicData { id: string; title: string; description: string; icon: stri
 import * as React from "react"
 import { getTopics } from "@/app/actions"
 import { addTopic, deleteTopic, updateTopic } from "@/app/actions/admin"
-import { Edit2, Trash2, Loader2, BookOpen } from "lucide-react"
+import { Edit2, Trash2, Loader2 } from "lucide-react"
+import { TopicIcon } from "@/components/ui/TopicIcon"
 import { GlassCard } from "@/components/ui/GlassCard"
 import { NeonButton } from "@/components/ui/NeonButton"
 import Link from "next/link"
@@ -145,7 +146,7 @@ export default function AdminDashboard() {
             <div className="flex justify-between items-start mb-4">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-xl bg-neon-cyan/20 flex items-center justify-center border border-neon-cyan/30 text-2xl">
-                  {topic.icon.length > 2 && /^[a-zA-Z-]+$/.test(topic.icon) ? <BookOpen className="w-6 h-6 text-neon-cyan" /> : topic.icon}
+                  <TopicIcon name={topic.icon} className="w-6 h-6 text-neon-cyan" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-white">{topic.title}</h3>

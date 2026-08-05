@@ -26,9 +26,26 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#090A0F]`}
       >
-        {children}
+        <header className="fixed top-0 left-0 right-0 z-50 bg-black/60 backdrop-blur-xl border-b border-white/10">
+          <div className="max-w-6xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <img 
+                src="https://upload.wikimedia.org/wikipedia/commons/1/14/Logo_Imigrasi.png" 
+                alt="Logo Imigrasi" 
+                className="h-10 w-auto"
+              />
+              <div>
+                <h1 className="text-white font-bold text-sm leading-tight tracking-wide">DITJEN IMIGRASI</h1>
+                <p className="text-slate-400 text-xs">Republik Indonesia</p>
+              </div>
+            </div>
+          </div>
+        </header>
+        <div className="pt-16">
+          {children}
+        </div>
       </body>
     </html>
   );
