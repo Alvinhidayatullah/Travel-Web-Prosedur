@@ -3,7 +3,7 @@
 import * as React from "react"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
-import { LogOut, Map, LayoutDashboard } from "lucide-react"
+import { LogOut, Map } from "lucide-react"
 import { logoutAction } from "@/app/actions/auth"
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {

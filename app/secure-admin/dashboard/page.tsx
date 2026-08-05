@@ -1,15 +1,16 @@
+interface TopicData { id: string; title: string; description: string; icon: string; slug: string; _count?: { requirements: number } }
 "use client"
 
 import * as React from "react"
 import { getTopics } from "@/app/actions"
 import { addTopic, deleteTopic, updateTopic } from "@/app/actions/admin"
-import { Plus, Edit2, Trash2, Loader2, BookOpen } from "lucide-react"
+import { Edit2, Trash2, Loader2, BookOpen } from "lucide-react"
 import { GlassCard } from "@/components/ui/GlassCard"
 import { NeonButton } from "@/components/ui/NeonButton"
 import Link from "next/link"
 
 export default function AdminDashboard() {
-  const [topics, setTopics] = React.useState<any[]>([])
+  const [topics, setTopics] = React.useState<TopicData[]>([])
   const [isLoading, setIsLoading] = React.useState(true)
   const [isSubmitting, setIsSubmitting] = React.useState(false)
   const [editingId, setEditingId] = React.useState<string | null>(null)
@@ -48,7 +49,7 @@ export default function AdminDashboard() {
     setIsSubmitting(false)
   }
 
-  const handleEdit = (topic: any) => {
+  const handleEdit = (topic: TopicData) => {
     setEditingId(topic.id)
     setFormData({
       title: topic.title,

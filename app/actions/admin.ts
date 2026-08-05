@@ -53,7 +53,7 @@ export async function addTopic(formData: FormData) {
     revalidatePath('/')
     revalidatePath('/secure-admin/dashboard')
     return { success: true, topic }
-  } catch (error) {
+  } catch (e) {
     return { error: "Terjadi kesalahan sistem atau format data tidak valid." }
   }
 }
@@ -84,7 +84,7 @@ export async function updateTopic(id: string, formData: FormData) {
     revalidatePath('/secure-admin/dashboard')
     revalidatePath(`/topic/${parsed.slug}`)
     return { success: true, topic }
-  } catch (error) {
+  } catch (e) {
     return { error: "Terjadi kesalahan saat memproses data." }
   }
 }
@@ -98,7 +98,7 @@ export async function deleteTopic(id: string) {
     revalidatePath('/')
     revalidatePath('/secure-admin/dashboard')
     return { success: true }
-  } catch (error) {
+  } catch (e) {
     return { error: "Terjadi kesalahan sistem." }
   }
 }
@@ -125,7 +125,7 @@ export async function addRequirement(formData: FormData) {
     revalidatePath('/')
     revalidatePath(`/secure-admin/dashboard/topic/[slug]`)
     return { success: true, requirement: req }
-  } catch (error) {
+  } catch (e) {
     return { error: "Data persyaratan tidak valid." }
   }
 }
@@ -139,7 +139,7 @@ export async function deleteRequirement(id: string) {
     
     revalidatePath('/')
     return { success: true }
-  } catch (error) {
+  } catch (e) {
     return { error: "Gagal menghapus data." }
   }
 }
