@@ -30,15 +30,15 @@ export default function RootLayout({
       >
         <header className="fixed top-0 left-0 right-0 z-50 bg-black/60 backdrop-blur-xl border-b border-white/10">
           <div className="max-w-6xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-4">
               <img 
-                src="https://upload.wikimedia.org/wikipedia/commons/1/14/Logo_Imigrasi.png" 
+                src="/logo-imigrasi.png" 
                 alt="Logo Imigrasi" 
-                className="h-10 w-auto"
+                className="h-9 w-auto"
               />
-              <div>
-                <h1 className="text-white font-bold text-sm leading-tight tracking-wide">DITJEN IMIGRASI</h1>
-                <p className="text-slate-400 text-xs">Republik Indonesia</p>
+              <div className="flex flex-col justify-center -space-y-0.5">
+                <h1 className="text-white font-bold text-sm md:text-base tracking-tight">Direktorat Jenderal Imigrasi</h1>
+                <p className="text-slate-400 text-[10px] md:text-xs">Republik Indonesia</p>
               </div>
             </div>
           </div>

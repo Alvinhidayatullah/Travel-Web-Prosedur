@@ -14,7 +14,7 @@ export default function Web3Hero({ title, subtitle }: Web3HeroProps) {
       {/* Background Image with Overlay */}
       <div 
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-20"
-        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1556388158-158ea5ccacbd?q=80&w=2070&auto=format&fit=crop')" }}
+        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1544465544-1b71aee9dfa3?q=80&w=2000&auto=format&fit=crop')" }}
       />
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#090A0F]/50 via-[#090A0F]/80 to-[#090A0F]" />
       
