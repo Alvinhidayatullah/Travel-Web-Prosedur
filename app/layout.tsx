@@ -14,8 +14,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Web Travel",
-  description: "Web Travel",
+  title: "IMIGRASI & INFOGRAFIS",
+  description: "Portal Infografis Prosedur Keimigrasian Republik Indonesia",
 };
 
 export default function RootLayout({
