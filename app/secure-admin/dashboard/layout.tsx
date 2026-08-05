@@ -24,23 +24,22 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-neon-cyan/20 to-neon-violet/20 flex items-center justify-center border border-white/10">
               <span className="text-neon-cyan font-bold">T3</span>
             </div>
-            <span className="text-white font-bold tracking-tight">Travel3 CMS</span>
+            <span className="text-white font-bold tracking-tight">Administration</span>
           </Link>
         </div>
-        
+
         <nav className="flex-1 p-4 space-y-2">
-          <Link href="/secure-admin/dashboard" className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
-            pathname === '/secure-admin/dashboard' 
-              ? 'bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/20' 
+          <Link href="/secure-admin/dashboard" className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${pathname === '/secure-admin/dashboard'
+              ? 'bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/20'
               : 'text-slate-400 hover:text-white hover:bg-white/5 border border-transparent'
-          }`}>
+            }`}>
             <Map className="w-5 h-5" />
             <span className="font-medium text-sm">Destinasi</span>
           </Link>
         </nav>
 
         <div className="p-4 border-t border-white/10">
-          <button 
+          <button
             onClick={handleLogout}
             className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-red-400 hover:bg-red-400/10 transition-all w-full text-left"
           >
