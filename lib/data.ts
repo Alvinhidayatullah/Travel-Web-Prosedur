@@ -144,51 +144,81 @@ export const topicsData = [
     _count: { requirements: 4 }
   },
   {
-    id: "anak-di-bawah-umur",
-    slug: "anak-di-bawah-umur",
-    title: "Syarat Anak di Bawah Umur Tanpa Pendamping Orang Tua",
-    description: "Ketentuan khusus bagi anak di bawah umur yang bepergian ke luar negeri tanpa didampingi orang tua kandung.",
-    icon: "baby",
+    id: "keberangkatan-khusus",
+    slug: "keberangkatan-khusus",
+    title: "Syarat Keberangkatan Khusus",
+    description: "Ketentuan khusus bagi anak di bawah umur, jemaah haji/umrah, pekerja migran, dan keperluan medis.",
+    icon: "shield-alert",
     createdAt: new Date("2024-01-01T00:00:00Z"),
     updatedAt: new Date("2024-01-01T00:00:00Z"),
-    requirements: [
+    requirements: [],
+    _count: { requirements: 0 },
+    subTopics: [
       {
-        id: "req-5",
-        stepNumber: 1,
-        title: "Paspor Anak",
-        description: "Paspor yang sah dan berlaku minimal 6 bulan milik anak.",
-        isMandatory: true,
+        id: "anak-di-bawah-umur",
+        slug: "anak-di-bawah-umur",
+        title: "Syarat Anak di Bawah Umur Tanpa Pendamping Orang Tua",
+        description: "Ketentuan khusus bagi anak di bawah umur yang bepergian ke luar negeri tanpa didampingi orang tua kandung.",
+        icon: "baby",
+        createdAt: new Date("2024-01-01T00:00:00Z"),
+        updatedAt: new Date("2024-01-01T00:00:00Z"),
+        requirements: [
+          { id: "req-5", stepNumber: 1, title: "Paspor Anak", description: "Paspor yang sah dan berlaku minimal 6 bulan milik anak.", isMandatory: true },
+          { id: "req-6", stepNumber: 2, title: "Surat Keterangan / Izin Orang Tua", description: "Surat izin tertulis dari kedua orang tua kandung yang mengizinkan anak pergi tanpa pendampingan mereka, ditandatangani di atas materai.", isMandatory: true },
+          { id: "req-7", stepNumber: 3, title: "Salinan Identitas Orang Tua", description: "Fotokopi KTP/Paspor orang tua kandung yang masih berlaku.", isMandatory: true },
+          { id: "req-8", stepNumber: 4, title: "Salinan Akta Kelahiran Anak", description: "Untuk membuktikan hubungan darah antara anak dan orang tua.", isMandatory: true },
+          { id: "req-9", stepNumber: 5, title: "Salinan Kartu Keluarga (KK)", description: "Menunjukkan daftar keluarga inti.", isMandatory: true }
+        ],
+        _count: { requirements: 5 }
       },
       {
-        id: "req-6",
-        stepNumber: 2,
-        title: "Surat Keterangan / Izin Orang Tua",
-        description: "Surat izin tertulis dari kedua orang tua kandung yang mengizinkan anak pergi tanpa pendampingan mereka, ditandatangani di atas materai.",
-        isMandatory: true,
+        id: "pekerja-migran-indonesia",
+        slug: "pekerja-migran-indonesia",
+        title: "Pekerja Migran Indonesia (PMI)",
+        description: "Syarat keberangkatan khusus bagi WNI yang akan bekerja di luar negeri sesuai ketentuan BP2MI.",
+        icon: "briefcase",
+        createdAt: new Date("2024-01-01T00:00:00Z"),
+        updatedAt: new Date("2024-01-01T00:00:00Z"),
+        requirements: [
+          { id: "pmi-1", stepNumber: 1, title: "Paspor Sah", description: "Paspor yang sah dan masih berlaku paling singkat 6 bulan.", isMandatory: true },
+          { id: "pmi-2", stepNumber: 2, title: "Visa Kerja (Working Visa)", description: "Visa kerja dari negara tujuan yang masih berlaku.", isMandatory: true },
+          { id: "pmi-3", stepNumber: 3, title: "E-KTKLN / Surat BP2MI", description: "Kartu Tenaga Kerja Luar Negeri elektronik atau dokumen setara dari BP2MI.", isMandatory: true },
+          { id: "pmi-4", stepNumber: 4, title: "Perjanjian Kerja", description: "Salinan perjanjian kerja yang telah disahkan.", isMandatory: true }
+        ],
+        _count: { requirements: 4 }
       },
       {
-        id: "req-7",
-        stepNumber: 3,
-        title: "Salinan Identitas Orang Tua",
-        description: "Fotokopi KTP/Paspor orang tua kandung yang masih berlaku.",
-        isMandatory: true,
+        id: "jemaah-haji-umrah",
+        slug: "jemaah-haji-umrah",
+        title: "Jemaah Haji / Umrah",
+        description: "Persyaratan dokumen perjalanan bagi WNI yang hendak melaksanakan ibadah Haji atau Umrah.",
+        icon: "landmark",
+        createdAt: new Date("2024-01-01T00:00:00Z"),
+        updatedAt: new Date("2024-01-01T00:00:00Z"),
+        requirements: [
+          { id: "haji-1", stepNumber: 1, title: "Paspor Sah", description: "Paspor sah dengan nama minimal 2 atau 3 suku kata (sesuai aturan Arab Saudi terbaru).", isMandatory: true },
+          { id: "haji-2", stepNumber: 2, title: "Visa Haji / Umrah", description: "Visa khusus ibadah dari Kedutaan Arab Saudi.", isMandatory: true },
+          { id: "haji-3", stepNumber: 3, title: "Sertifikat Vaksinasi", description: "Sertifikat vaksinasi meningitis atau vaksin lain yang disyaratkan oleh negara tujuan.", isMandatory: true },
+          { id: "haji-4", stepNumber: 4, title: "Surat Rekomendasi Kemenag", description: "Untuk pengajuan paspor baru khusus umrah/haji, dibutuhkan rekomendasi dari Kementerian Agama.", isMandatory: false }
+        ],
+        _count: { requirements: 4 }
       },
       {
-        id: "req-8",
-        stepNumber: 4,
-        title: "Salinan Akta Kelahiran Anak",
-        description: "Untuk membuktikan hubungan darah antara anak dan orang tua.",
-        isMandatory: true,
-      },
-      {
-        id: "req-9",
-        stepNumber: 5,
-        title: "Salinan Kartu Keluarga (KK)",
-        description: "Menunjukkan daftar keluarga inti.",
-        isMandatory: true,
+        id: "evakuasi-medis",
+        slug: "evakuasi-medis",
+        title: "Evakuasi Medis & Orang Sakit",
+        description: "Prosedur keimigrasian darurat untuk pasien yang harus segera diberangkatkan ke luar negeri.",
+        icon: "heart-pulse",
+        createdAt: new Date("2024-01-01T00:00:00Z"),
+        updatedAt: new Date("2024-01-01T00:00:00Z"),
+        requirements: [
+          { id: "med-1", stepNumber: 1, title: "Paspor Pasien & Pendamping", description: "Paspor pasien dan keluarga yang mendampingi.", isMandatory: true },
+          { id: "med-2", stepNumber: 2, title: "Surat Rujukan Medis", description: "Surat rujukan darurat dari rumah sakit di Indonesia ke rumah sakit tujuan.", isMandatory: true },
+          { id: "med-3", stepNumber: 3, title: "Layanan Jemput Bola Imigrasi", description: "Keluarga dapat mengajukan layanan pembuatan paspor darurat di rumah sakit jika pasien belum memiliki paspor.", isMandatory: true }
+        ],
+        _count: { requirements: 3 }
       }
-    ],
-    _count: { requirements: 5 }
+    ]
   },
   {
     id: "pembuatan-paspor-baru",

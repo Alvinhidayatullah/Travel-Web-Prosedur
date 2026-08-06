@@ -1,4 +1,4 @@
-import { Plane, Baby, BookOpen, Globe, FileText, Laptop, Users, Briefcase, ShieldAlert } from "lucide-react"
+import { Plane, Baby, BookOpen, Globe, FileText, Laptop, Users, Briefcase, ShieldAlert, HeartPulse, Landmark } from "lucide-react"
 
 export function TopicIcon({ name, className }: { name: string, className?: string }) {
   switch (name) {
@@ -18,6 +18,10 @@ export function TopicIcon({ name, className }: { name: string, className?: strin
       return <Briefcase className={className} />
     case 'shield-alert':
       return <ShieldAlert className={className} />
+    case 'heart-pulse':
+      return <HeartPulse className={className} />
+    case 'landmark':
+      return <Landmark className={className} />
     default:
       return <FileText className={className} />
   }
