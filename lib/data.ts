@@ -260,7 +260,7 @@ export const topicsData = [
         slug: "e-visa",
         title: "e-Visa (Visa Elektronik)",
         description: "Visa yang diajukan secara online untuk tujuan wisata, kunjungan keluarga, atau bisnis singkat.",
-        icon: "globe",
+        icon: "laptop",
         createdAt: new Date("2024-01-01T00:00:00Z"),
         updatedAt: new Date("2024-01-01T00:00:00Z"),
         requirements: [
@@ -275,7 +275,7 @@ export const topicsData = [
         slug: "visa-kunjungan",
         title: "Visa Kunjungan",
         description: "Visa untuk tujuan kunjungan pemerintah, pendidikan, sosial budaya, wisata, atau jurnalis.",
-        icon: "book",
+        icon: "users",
         createdAt: new Date("2024-01-01T00:00:00Z"),
         updatedAt: new Date("2024-01-01T00:00:00Z"),
         requirements: [
@@ -291,7 +291,7 @@ export const topicsData = [
         slug: "vitas",
         title: "Visa Tinggal Terbatas (VITAS)",
         description: "Visa untuk tenaga kerja asing, investor, pelajar, atau penyatuan keluarga.",
-        icon: "plane",
+        icon: "briefcase",
         createdAt: new Date("2024-01-01T00:00:00Z"),
         updatedAt: new Date("2024-01-01T00:00:00Z"),
         requirements: [
@@ -306,7 +306,7 @@ export const topicsData = [
         slug: "visa-keberangkatan-khusus",
         title: "Visa Keberangkatan Khusus",
         description: "Visa atau izin khusus untuk keperluan evakuasi medis, misi diplomatik, atau keadaan darurat.",
-        icon: "baby",
+        icon: "shield-alert",
         createdAt: new Date("2024-01-01T00:00:00Z"),
         updatedAt: new Date("2024-01-01T00:00:00Z"),
         requirements: [
