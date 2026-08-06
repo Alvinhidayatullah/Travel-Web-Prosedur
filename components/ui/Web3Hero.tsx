@@ -10,7 +10,7 @@ interface Web3HeroProps {
 
 export default function Web3Hero({ title, subtitle }: Web3HeroProps) {
   return (
-    <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 px-6 overflow-hidden flex flex-col justify-center">
+    <section className="relative pt-20 pb-12 md:pt-28 md:pb-20 px-6 overflow-hidden flex flex-col justify-center">
       {/* Background Image with Overlay */}
       <div 
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-30 mix-blend-luminosity"
@@ -31,14 +31,14 @@ export default function Web3Hero({ title, subtitle }: Web3HeroProps) {
           <img 
             src="/logo-imigrasi.webp" 
             alt="Logo Direktorat Jenderal Imigrasi" 
-            className="w-24 md:w-32 h-auto mb-8 drop-shadow-[0_0_15px_rgba(34,211,238,0.5)]"
+            className="w-24 md:w-32 h-auto mb-5 drop-shadow-[0_0_15px_rgba(34,211,238,0.5)]"
           />
           
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-[1.2] mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-slate-400 px-2">
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-[1.2] mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-slate-400 px-2">
             {title}
           </h1>
           
-          <p className="text-base md:text-xl text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed px-4">
+          <p className="text-base md:text-xl text-slate-300 mb-4 max-w-3xl mx-auto leading-relaxed px-4">
             {subtitle}
           </p>
         </motion.div>
