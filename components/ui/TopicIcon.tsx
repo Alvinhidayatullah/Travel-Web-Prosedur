@@ -1,4 +1,4 @@
-import { Plane, Baby, BookOpen, Globe, FileText, Laptop, Users, Briefcase, ShieldAlert, HeartPulse, Landmark, RefreshCw, AlertTriangle, Zap } from "lucide-react"
+import { Plane, Baby, BookOpen, Globe, FileText, Laptop, Users, Briefcase, ShieldAlert, HeartPulse, Landmark, RefreshCw, AlertTriangle, Zap, Building, FileEdit, CreditCard } from "lucide-react"
 
 export function TopicIcon({ name, className }: { name: string, className?: string }) {
   switch (name) {
@@ -28,6 +28,12 @@ export function TopicIcon({ name, className }: { name: string, className?: strin
       return <AlertTriangle className={className} />
     case 'zap':
       return <Zap className={className} />
+    case 'building':
+      return <Building className={className} />
+    case 'file-edit':
+      return <FileEdit className={className} />
+    case 'credit-card':
+      return <CreditCard className={className} />
     default:
       return <FileText className={className} />
   }

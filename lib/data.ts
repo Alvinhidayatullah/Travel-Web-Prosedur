@@ -314,6 +314,54 @@ export const topicsData = [
           { id: "pak-6", stepNumber: 6, title: "Kehadiran Wajib", description: "Anak harus hadir untuk pengambilan foto & biometrik, serta diwajibkan didampingi oleh kedua orang tua.", isMandatory: true }
         ],
         _count: { requirements: 6 }
+      },
+      {
+        id: "eazy-passport",
+        slug: "eazy-passport",
+        title: "Layanan Eazy Passport (Jemput Bola)",
+        description: "Layanan kolektif pengurusan paspor di luar kantor imigrasi untuk instansi pemerintah, swasta, atau komunitas.",
+        icon: "building",
+        createdAt: new Date("2024-01-01T00:00:00Z"),
+        updatedAt: new Date("2024-01-01T00:00:00Z"),
+        requirements: [
+          { id: "ez-1", stepNumber: 1, title: "Jumlah Pemohon Minimal", description: "Komunitas/Instansi harus mengumpulkan minimal 50 pemohon paspor.", isMandatory: true },
+          { id: "ez-2", stepNumber: 2, title: "Surat Permohonan", description: "Mengirimkan surat permohonan resmi dari pimpinan instansi/ketua komunitas ke Kantor Imigrasi terdekat.", isMandatory: true },
+          { id: "ez-3", stepNumber: 3, title: "Penyediaan Lokasi", description: "Instansi pemohon wajib menyediakan tempat yang representatif beserta koneksi internet yang stabil.", isMandatory: true },
+          { id: "ez-4", stepNumber: 4, title: "Pelaksanaan di Lokasi", description: "Petugas imigrasi akan datang untuk melakukan wawancara, foto, dan pengambilan biometrik di tempat yang disediakan.", isMandatory: true }
+        ],
+        _count: { requirements: 4 }
+      },
+      {
+        id: "perubahan-data-paspor",
+        slug: "perubahan-data-paspor",
+        title: "Perubahan Data Paspor",
+        description: "Prosedur untuk mengubah data di halaman pengesahan paspor (misal: tambah nama, gelar, atau penyesuaian beda nama/TTL).",
+        icon: "file-edit",
+        createdAt: new Date("2024-01-01T00:00:00Z"),
+        updatedAt: new Date("2024-01-01T00:00:00Z"),
+        requirements: [
+          { id: "pd-1", stepNumber: 1, title: "Dokumen Dasar (KTP, KK, Akta)", description: "Membawa e-KTP, KK, dan Akta Kelahiran asli yang memuat data terbaru yang benar.", isMandatory: true },
+          { id: "pd-2", stepNumber: 2, title: "Surat Penetapan Pengadilan (Jika Beda Identitas)", description: "Jika terjadi perbedaan nama/tanggal lahir yang signifikan, wajib melampirkan salinan sah Penetapan Pengadilan Negeri.", isMandatory: true },
+          { id: "pd-3", stepNumber: 3, title: "Paspor Lama Asli", description: "Membawa paspor asli yang datanya ingin diubah/ditambahkan.", isMandatory: true },
+          { id: "pd-4", stepNumber: 4, title: "Permohonan Langsung", description: "Pemohon datang langsung ke Kantor Imigrasi penerbit paspor untuk proses pengesahan perubahan data (endorsement).", isMandatory: true }
+        ],
+        _count: { requirements: 4 }
+      },
+      {
+        id: "epaspor-polikarbonat",
+        slug: "epaspor-polikarbonat",
+        title: "Pengajuan E-Paspor Polikarbonat",
+        description: "Pengajuan paspor elektronik lembar polikarbonat yang lebih kuat, aman, dan berstandar internasional.",
+        icon: "credit-card",
+        createdAt: new Date("2024-01-01T00:00:00Z"),
+        updatedAt: new Date("2024-01-01T00:00:00Z"),
+        requirements: [
+          { id: "poly-1", stepNumber: 1, title: "Pilih Kantor Imigrasi Khusus", description: "Pastikan Anda memilih Kanim yang sudah mendukung penerbitan lembar Polikarbonat melalui M-Paspor.", isMandatory: true },
+          { id: "poly-2", stepNumber: 2, title: "Dokumen Sama Dengan Paspor Biasa", description: "Syaratnya sama persis: e-KTP, KK, dan (Akta/Buku Nikah/Ijazah).", isMandatory: true },
+          { id: "poly-3", stepNumber: 3, title: "Biaya PNBP (Rp 650.000)", description: "Membayar kode billing untuk paspor elektronik sebesar Rp 650.000 melalui bank atau e-commerce.", isMandatory: true },
+          { id: "poly-4", stepNumber: 4, title: "Keuntungan Keamanan", description: "Halaman identitas terbuat dari plastik tebal khusus (polikarbonat) yang tahan lama dan sulit dipalsukan.", isMandatory: false }
+        ],
+        _count: { requirements: 4 }
       }
     ]
   },
