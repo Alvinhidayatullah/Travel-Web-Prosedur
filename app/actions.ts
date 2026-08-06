@@ -7,5 +7,16 @@ export async function getTopics() {
 }
 
 export async function getTopicBySlug(slug: string) {
-  return topicsData.find(t => t.slug === slug) || null;
+  const topLevel = topicsData.find(t => t.slug === slug);
+  if (topLevel) return topLevel;
+
+  for (const topic of topicsData) {
+    if (topic.subTopics) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const sub = topic.subTopics.find((st: any) => st.slug === slug);
+      if (sub) return sub;
+    }
+  }
+
+  return null;
 }

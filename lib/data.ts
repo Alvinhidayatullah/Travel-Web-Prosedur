@@ -252,50 +252,69 @@ export const topicsData = [
     icon: "globe",
     createdAt: new Date("2024-01-01T00:00:00Z"),
     updatedAt: new Date("2024-01-01T00:00:00Z"),
-    requirements: [
+    requirements: [],
+    _count: { requirements: 0 },
+    subTopics: [
       {
-        id: "req-16",
-        stepNumber: 1,
-        title: "Paspor Sah dan Masih Berlaku",
-        description: "Masa berlaku paspor minimal 6 (enam) bulan untuk Visa Kunjungan, atau lebih lama tergantung jenis Visa Tinggal Terbatas.",
-        isMandatory: true,
+        id: "e-visa",
+        slug: "e-visa",
+        title: "e-Visa (Visa Elektronik)",
+        description: "Visa yang diajukan secara online untuk tujuan wisata, kunjungan keluarga, atau bisnis singkat.",
+        icon: "globe",
+        createdAt: new Date("2024-01-01T00:00:00Z"),
+        updatedAt: new Date("2024-01-01T00:00:00Z"),
+        requirements: [
+          { id: "evisa-1", stepNumber: 1, title: "Paspor Aktif Min. 6 Bulan", description: "Paspor asli harus masih berlaku minimal 6 bulan.", isMandatory: true },
+          { id: "evisa-2", stepNumber: 2, title: "Registrasi Online", description: "Mendaftar melalui portal resmi molina.imigrasi.go.id.", isMandatory: true },
+          { id: "evisa-3", stepNumber: 3, title: "Pembayaran Online", description: "Membayar PNBP menggunakan kartu kredit/debit jaringan Visa/Mastercard/JCB.", isMandatory: true }
+        ],
+        _count: { requirements: 3 }
       },
       {
-        id: "req-17",
-        stepNumber: 2,
-        title: "Surat Penjaminan atau Sponsor (Jika Berlaku)",
-        description: "Surat penjaminan dari Penjamin (Sponsor) di Indonesia yang bertanggung jawab selama WNA berada di Indonesia.",
-        isMandatory: false,
+        id: "visa-kunjungan",
+        slug: "visa-kunjungan",
+        title: "Visa Kunjungan",
+        description: "Visa untuk tujuan kunjungan pemerintah, pendidikan, sosial budaya, wisata, atau jurnalis.",
+        icon: "book",
+        createdAt: new Date("2024-01-01T00:00:00Z"),
+        updatedAt: new Date("2024-01-01T00:00:00Z"),
+        requirements: [
+          { id: "vk-1", stepNumber: 1, title: "Paspor Sah", description: "Paspor kebangsaan yang sah dan masih berlaku paling singkat 6 bulan.", isMandatory: true },
+          { id: "vk-2", stepNumber: 2, title: "Surat Penjaminan", description: "Surat penjaminan dari Penjamin, kecuali untuk Visa Kunjungan Wisata.", isMandatory: false },
+          { id: "vk-3", stepNumber: 3, title: "Bukti Biaya Hidup", description: "Bukti memiliki biaya hidup bagi diri dan/atau keluarga (min. USD 2000).", isMandatory: true },
+          { id: "vk-4", stepNumber: 4, title: "Tiket Kembali", description: "Tiket kembali atau tiket terusan ke negara lain.", isMandatory: true }
+        ],
+        _count: { requirements: 4 }
       },
       {
-        id: "req-18",
-        stepNumber: 3,
-        title: "Bukti Biaya Hidup (Proof of Funds)",
-        description: "Bukti memiliki biaya hidup bagi dirinya dan/atau keluarganya selama berada di Wilayah Indonesia (umumnya minimal USD 2000).",
-        isMandatory: true,
+        id: "vitas",
+        slug: "vitas",
+        title: "Visa Tinggal Terbatas (VITAS)",
+        description: "Visa untuk tenaga kerja asing, investor, pelajar, atau penyatuan keluarga.",
+        icon: "plane",
+        createdAt: new Date("2024-01-01T00:00:00Z"),
+        updatedAt: new Date("2024-01-01T00:00:00Z"),
+        requirements: [
+          { id: "vitas-1", stepNumber: 1, title: "Paspor Sah (Min. 12-30 Bulan)", description: "Paspor sah dan masih berlaku, durasi menyesuaikan izin tinggal yang diminta.", isMandatory: true },
+          { id: "vitas-2", stepNumber: 2, title: "Surat Rekomendasi/Izin", description: "Surat rekomendasi dari instansi terkait (misal Kemenaker untuk pekerja).", isMandatory: true },
+          { id: "vitas-3", stepNumber: 3, title: "Riwayat Kesehatan & Kriminal", description: "Surat keterangan sehat dan bukti tidak memiliki riwayat kejahatan (untuk negara tertentu).", isMandatory: true }
+        ],
+        _count: { requirements: 3 }
       },
       {
-        id: "req-19",
-        stepNumber: 4,
-        title: "Tiket Kembali atau Tiket Terusan",
-        description: "Tiket pesawat untuk kembali ke negara asal atau melanjutkan perjalanan ke negara lain.",
-        isMandatory: true,
-      },
-      {
-        id: "req-20",
-        stepNumber: 5,
-        title: "Pas Foto Berwarna Terbaru",
-        description: "Pas foto WNA dengan ukuran dan latar belakang sesuai ketentuan (biasanya latar belakang putih atau merah).",
-        isMandatory: true,
-      },
-      {
-        id: "req-21",
-        stepNumber: 6,
-        title: "Pembayaran PNBP",
-        description: "Membayar Penerimaan Negara Bukan Pajak (PNBP) sesuai dengan jenis visa yang diajukan (dapat dibayarkan secara online).",
-        isMandatory: true,
+        id: "visa-keberangkatan-khusus",
+        slug: "visa-keberangkatan-khusus",
+        title: "Visa Keberangkatan Khusus",
+        description: "Visa atau izin khusus untuk keperluan evakuasi medis, misi diplomatik, atau keadaan darurat.",
+        icon: "baby",
+        createdAt: new Date("2024-01-01T00:00:00Z"),
+        updatedAt: new Date("2024-01-01T00:00:00Z"),
+        requirements: [
+          { id: "vks-1", stepNumber: 1, title: "Surat Pengantar Instansi Resmi", description: "Dokumen pengantar dari Kementerian Luar Negeri atau Instansi/Organisasi berwenang.", isMandatory: true },
+          { id: "vks-2", stepNumber: 2, title: "Dokumen Kedokteran (Untuk Medis)", description: "Rujukan medis dari rumah sakit untuk evakuasi darurat.", isMandatory: false }
+        ],
+        _count: { requirements: 2 }
       }
-    ],
-    _count: { requirements: 6 }
+    ]
   }
 ];
