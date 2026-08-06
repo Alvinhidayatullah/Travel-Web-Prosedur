@@ -1,22 +1,25 @@
-# Web Imigrasi & Prosedur Perjalanan 🌍
+# Web Imigrasi & Infografis 🌍
 
-Portal informasi modern untuk prosedur imigrasi dan perjalanan. Dibangun dengan desain terinspirasi dari tema Web3 (Glassmorphism, Neon Cyberpunk) yang memberikan nuansa futuristik, elegan, namun tetap mudah digunakan (*user-friendly*). 
+Portal informasi modern untuk prosedur imigrasi, paspor, visa, dan syarat perjalanan internasional. Dibangun dengan desain terinspirasi dari tema UI modern (Glassmorphism, Neon Cyberpunk) yang memberikan nuansa futuristik, elegan, namun tetap informatif dan mudah digunakan (*user-friendly*). 
 
-Proyek ini telah dikembangkan dengan arsitektur **Next.js 14 (App Router) sebagai Static Frontend-Only** dan disiapkan khusus agar dapat di-*deploy* secara instan ke **Vercel** tanpa kerumitan pengaturan *database*.
+Proyek ini menggunakan arsitektur **Next.js 14 (App Router) sebagai Static Frontend-Only** sehingga dapat di-*deploy* secara instan ke **Vercel** dengan performa tinggi.
 
 ## 🚀 Fitur Utama
 
-- **Tampilan Futuristis (Web3 Theme)**: Antarmuka cantik menggunakan efek *backdrop-filter*, *neon glow*, animasi *framer-motion*, dan gradien halus.
-- **Daftar Panduan Imigrasi**: Menampilkan topik-topik krusial seperti Syarat Umum Perjalanan, Anak di Bawah Umur, dan Pembuatan Paspor Baru secara interaktif.
-- **Rincian Prosedur**: Halaman khusus untuk tiap panduan yang menyajikan langkah-langkah persyaratan *(Timeline)* dengan animasi gulir (*scroll reveal*).
-- **Frontend-Only**: Berjalan 100% di sisi *client* dan *build-time*, sehingga dijamin tidak ada *error* ketika di-*hosting* ke Vercel.
+- **Tampilan Futuristis**: Antarmuka premium dengan efek *backdrop-filter*, gradien *neon*, animasi mikro, dan transisi halaman yang halus.
+- **Sistem Kategori Bersarang (Nested Topics)**: Navigasi intuitif untuk menelusuri kategori besar ke rincian spesifik tanpa kebingungan.
+- **Infografis Prosedur interaktif**: Halaman khusus untuk tiap panduan yang menyajikan langkah-langkah persyaratan dalam bentuk *Timeline* (garis waktu) yang rapi.
+- **Empat Pilar Informasi Utama**:
+  1. **Syarat Umum Perjalanan**: Panduan standar keberangkatan ke luar negeri.
+  2. **Syarat Keberangkatan Khusus**: Meliputi Anak di Bawah Umur, Pekerja Migran (PMI), Haji/Umrah, dan Evakuasi Medis.
+  3. **Layanan & Prosedur Paspor RI**: Informasi pembuatan paspor baru, perpanjangan, hilang/rusak, dan percepatan (sehari jadi).
+  4. **Persyaratan Berbagai Jenis Visa**: e-Visa, Visa Kunjungan, VITAS, dan Visa Khusus.
 
 ## 🛠 Teknologi yang Digunakan
 - **Framework**: Next.js 14 (React 18)
 - **Styling**: Tailwind CSS, Vanilla CSS (`globals.css`)
-- **Animasi**: Framer Motion
 - **Ikon**: `lucide-react`
-- **Arsitektur**: Serverless Static Data (`lib/data.ts`)
+- **Arsitektur Data**: Serverless Static Data (`lib/data.ts`)
 
 ## 📦 Panduan Menjalankan Secara Lokal
 
@@ -35,16 +38,16 @@ Proyek ini telah dikembangkan dengan arsitektur **Next.js 14 (App Router) sebaga
    ```bash
    npm run dev
    ```
-   Aplikasi akan berjalan di `http://localhost:3000` (atau port 3001).
+   Aplikasi akan berjalan di `http://localhost:3000` (atau port yang tersedia).
 
 ## ☁️ Panduan Deploy ke Vercel
 
-Proyek ini telah dikonfigurasi sepenuhnya untuk Vercel. Karena menggunakan arsitektur statis (*Frontend-Only*), proses *deploy* akan berjalan sangat mulus.
+Proyek ini dikonfigurasi sepenuhnya untuk Vercel. Menggunakan arsitektur statis (*Frontend-Only*), proses *deploy* akan sangat mulus tanpa perlu menyiapkan *database*.
 
 1. Hubungkan akun GitHub Anda ke [Vercel](https://vercel.com/).
 2. Buat **New Project** dan *import* repositori `Travel-Web-Prosedur`.
 3. Klik **Deploy**.
-4. Selesai! Web Anda akan langsung aktif tanpa perlu mengatur *Environment Variables* atau *Database*.
+4. Selesai! Web Anda akan langsung aktif.
 
 ---
-*Dibangun dengan ❤️ untuk memberikan pengalaman perjalanan generasi berikutnya.*
+*Dibangun dengan ❤️ untuk memberikan pengalaman keimigrasian digital generasi berikutnya.*
