@@ -13,14 +13,14 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen bg-[#090A0F] text-white selection:bg-neon-cyan/30">
-      <Web3Hero 
-        title={<>Portal Panduan Lengkap <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan via-neon-violet to-neon-cyan animate-pulse-slow">Keimigrasian & Perjalanan</span></>}
-        subtitle="Temukan semua informasi resmi terkait prosedur keimigrasian, paspor, visa, dan syarat keberangkatan khusus (seperti anak di bawah umur) dalam format infografis interaktif."
+      <Web3Hero
+        title={<>Portal Panduan Lengkap <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan via-neon-violet to-neon-cyan animate-pulse-slow">Keimigrasian & Perjalanan Ke Luar Negeri</span></>}
+        subtitle="Temukan semua informasi resmi terkait prosedur keimigrasian, paspor, visa, dan syarat keberangkatan khusus."
       />
 
       {/* Main Content */}
       <div className="max-w-6xl mx-auto px-4 md:px-8 pb-20 pt-4 relative z-10">
-        
+
         <div className="flex items-center gap-3 mb-10">
           <ShieldCheck className="w-8 h-8 text-neon-cyan" />
           <h2 className="text-2xl font-bold">Topik Panduan</h2>
@@ -34,10 +34,10 @@ export default async function Home() {
                   <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-neon-cyan/20 to-neon-violet/20 flex items-center justify-center border border-white/10 text-3xl mb-6 group-hover:scale-110 transition-transform duration-300">
                     <TopicIcon name={topic.icon} className="w-7 h-7 text-neon-cyan" />
                   </div>
-                  
+
                   <h3 className="text-xl font-bold mb-3 group-hover:text-neon-cyan transition-colors">{topic.title}</h3>
                   <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-1">{topic.description}</p>
-                  
+
                   <div className="flex items-center justify-between pt-4 border-t border-white/10 mt-auto text-sm">
                     <span className="text-slate-500">{topic._count?.requirements || 0} Persyaratan</span>
                     <div className="flex items-center gap-2 text-neon-cyan">
@@ -49,7 +49,7 @@ export default async function Home() {
               </Link>
             </ScrollReveal>
           ))}
-          
+
           {topics.length === 0 && (
             <div className="col-span-full py-20 text-center text-slate-500 border border-dashed border-white/10 rounded-2xl">
               Belum ada panduan tersedia.

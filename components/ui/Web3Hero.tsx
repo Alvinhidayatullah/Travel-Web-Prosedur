@@ -26,7 +26,13 @@ export default function Web3Hero({ title, subtitle }: Web3HeroProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
+          className="flex flex-col items-center"
         >
+          <img 
+            src="/logo-imigrasi.webp" 
+            alt="Logo Direktorat Jenderal Imigrasi" 
+            className="w-24 md:w-32 h-auto mb-8 drop-shadow-[0_0_15px_rgba(34,211,238,0.5)]"
+          />
           
           <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-[1.2] mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-slate-400 px-2">
             {title}
