@@ -20,9 +20,9 @@ export default async function TopicDetail({ params }: { params: { slug: string }
         <div className="absolute inset-0 bg-gradient-to-b from-neon-cyan/5 to-transparent pointer-events-none" />
         
         <div className="max-w-4xl mx-auto relative z-10">
-          <Link href="/" className="inline-flex items-center gap-2 text-neon-cyan hover:text-white transition-colors mb-8 bg-neon-cyan/10 px-4 py-2 rounded-full text-sm font-medium border border-neon-cyan/20">
+          <Link href={topic.parentSlug ? `/topic/${topic.parentSlug}` : "/"} className="inline-flex items-center gap-2 text-neon-cyan hover:text-white transition-colors mb-8 bg-neon-cyan/10 px-4 py-2 rounded-full text-sm font-medium border border-neon-cyan/20">
             <ArrowLeft className="w-4 h-4" />
-            Kembali ke Beranda
+            {topic.parentTitle ? `Kembali ke ${topic.parentTitle}` : "Kembali ke Beranda"}
           </Link>
           
           <div className="flex items-start gap-6">
