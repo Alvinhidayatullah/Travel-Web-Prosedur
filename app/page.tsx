@@ -39,9 +39,11 @@ export default async function Home() {
                   <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-1">{topic.description}</p>
 
                   <div className="flex items-center justify-between pt-4 border-t border-white/10 mt-auto text-sm">
-                    <span className="text-slate-500">{topic._count?.requirements || 0} Persyaratan</span>
+                    <span className="text-slate-500">
+                      {topic.subTopics ? `${topic.subTopics.length} Layanan/Kategori` : `${topic._count?.requirements || 0} Persyaratan`}
+                    </span>
                     <div className="flex items-center gap-2 text-neon-cyan">
-                      <span>Lihat Infografis</span>
+                      <span>{topic.subTopics ? 'Lihat Pilihan' : 'Lihat Infografis'}</span>
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </div>
                   </div>
