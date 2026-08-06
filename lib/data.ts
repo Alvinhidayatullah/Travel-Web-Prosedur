@@ -296,6 +296,24 @@ export const topicsData = [
           { id: "cep-4", stepNumber: 4, title: "Pengambilan Paspor Sore Hari", description: "Lakukan proses foto dan wawancara. Paspor akan selesai dan dapat diambil pada sore harinya.", isMandatory: true }
         ],
         _count: { requirements: 4 }
+      },
+      {
+        id: "paspor-anak",
+        slug: "paspor-anak",
+        title: "Pembuatan Paspor Anak (Di Bawah 17 Tahun)",
+        description: "Prosedur khusus dan persyaratan wajib bagi anak usia di bawah 17 tahun dan belum menikah.",
+        icon: "baby",
+        createdAt: new Date("2024-01-01T00:00:00Z"),
+        updatedAt: new Date("2024-01-01T00:00:00Z"),
+        requirements: [
+          { id: "pak-1", stepNumber: 1, title: "KTP Kedua Orang Tua", description: "Membawa e-KTP asli kedua orang tua kandung beserta fotokopinya.", isMandatory: true },
+          { id: "pak-2", stepNumber: 2, title: "Kartu Keluarga (KK)", description: "Kartu Keluarga yang mencantumkan nama anak secara jelas (asli dan fotokopi).", isMandatory: true },
+          { id: "pak-3", stepNumber: 3, title: "Akta Kelahiran Anak", description: "Akta kelahiran asli milik anak beserta fotokopi.", isMandatory: true },
+          { id: "pak-4", stepNumber: 4, title: "Buku Nikah Orang Tua", description: "Buku nikah atau akta perkawinan orang tua asli beserta fotokopi.", isMandatory: true },
+          { id: "pak-5", stepNumber: 5, title: "Paspor Orang Tua", description: "Paspor kedua orang tua (jika memiliki).", isMandatory: false },
+          { id: "pak-6", stepNumber: 6, title: "Kehadiran Wajib", description: "Anak harus hadir untuk pengambilan foto & biometrik, serta diwajibkan didampingi oleh kedua orang tua.", isMandatory: true }
+        ],
+        _count: { requirements: 6 }
       }
     ]
   },
