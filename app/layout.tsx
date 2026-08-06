@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import Link from "next/link";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -30,17 +31,16 @@ export default function RootLayout({
       >
         <header className="fixed top-0 left-0 right-0 z-50 bg-black/60 backdrop-blur-xl border-b border-white/10">
           <div className="max-w-6xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
-            <div className="flex items-center gap-4">
+            <Link href="/" className="flex items-center gap-4 group transition-transform duration-300 hover:scale-105">
               <img 
                 src="/logo-imigrasi.webp" 
                 alt="Logo Imigrasi" 
-                className="h-10 w-auto"
+                className="h-10 w-auto group-hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.5)] transition-all"
               />
-              <div className="flex flex-col justify-center -space-y-0.5">
-                <h1 className="text-white font-bold text-sm md:text-base tracking-tight">Direktorat Jenderal Imigrasi</h1>
-                <p className="text-slate-400 text-[10px] md:text-xs">Republik Indonesia</p>
+              <div className="flex flex-col justify-center">
+                <h1 className="text-white font-bold text-sm md:text-base tracking-tight group-hover:text-neon-cyan transition-colors">KANTOR IMIGRASI KELAS II TPI KARIMUN</h1>
               </div>
-            </div>
+            </Link>
           </div>
         </header>
         <div className="pt-16">
