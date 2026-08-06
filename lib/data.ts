@@ -243,5 +243,59 @@ export const topicsData = [
       }
     ],
     _count: { requirements: 6 }
+  },
+  {
+    id: "informasi-visa",
+    slug: "informasi-visa",
+    title: "Persyaratan & Ketentuan Berbagai Jenis Visa",
+    description: "Panduan lengkap pengajuan visa (e-Visa, Visa Kunjungan, Visa Tinggal Terbatas) sesuai standar Direktorat Jenderal Imigrasi.",
+    icon: "globe",
+    createdAt: new Date("2024-01-01T00:00:00Z"),
+    updatedAt: new Date("2024-01-01T00:00:00Z"),
+    requirements: [
+      {
+        id: "req-16",
+        stepNumber: 1,
+        title: "Paspor Sah dan Masih Berlaku",
+        description: "Masa berlaku paspor minimal 6 (enam) bulan untuk Visa Kunjungan, atau lebih lama tergantung jenis Visa Tinggal Terbatas.",
+        isMandatory: true,
+      },
+      {
+        id: "req-17",
+        stepNumber: 2,
+        title: "Surat Penjaminan atau Sponsor (Jika Berlaku)",
+        description: "Surat penjaminan dari Penjamin (Sponsor) di Indonesia yang bertanggung jawab selama WNA berada di Indonesia.",
+        isMandatory: false,
+      },
+      {
+        id: "req-18",
+        stepNumber: 3,
+        title: "Bukti Biaya Hidup (Proof of Funds)",
+        description: "Bukti memiliki biaya hidup bagi dirinya dan/atau keluarganya selama berada di Wilayah Indonesia (umumnya minimal USD 2000).",
+        isMandatory: true,
+      },
+      {
+        id: "req-19",
+        stepNumber: 4,
+        title: "Tiket Kembali atau Tiket Terusan",
+        description: "Tiket pesawat untuk kembali ke negara asal atau melanjutkan perjalanan ke negara lain.",
+        isMandatory: true,
+      },
+      {
+        id: "req-20",
+        stepNumber: 5,
+        title: "Pas Foto Berwarna Terbaru",
+        description: "Pas foto WNA dengan ukuran dan latar belakang sesuai ketentuan (biasanya latar belakang putih atau merah).",
+        isMandatory: true,
+      },
+      {
+        id: "req-21",
+        stepNumber: 6,
+        title: "Pembayaran PNBP",
+        description: "Membayar Penerimaan Negara Bukan Pajak (PNBP) sesuai dengan jenis visa yang diajukan (dapat dibayarkan secara online).",
+        isMandatory: true,
+      }
+    ],
+    _count: { requirements: 6 }
   }
 ];
